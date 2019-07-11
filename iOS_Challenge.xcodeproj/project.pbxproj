@@ -20,6 +20,8 @@
 		8778E6C122D73DAC00D0B5F8 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778E6C022D73DAC00D0B5F8 /* URLConstants.swift */; };
 		8778E6C322D73F3400D0B5F8 /* KeyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778E6C222D73F3400D0B5F8 /* KeyConstants.swift */; };
 		8778E6C522D741AB00D0B5F8 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778E6C422D741AB00D0B5F8 /* ApiService.swift */; };
+		8778E6C722D78A2B00D0B5F8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778E6C622D78A2B00D0B5F8 /* UserDefaults+.swift */; };
+		87C06F5722D793A300D0F40C /* APIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06F5622D793A300D0F40C /* APIEntity.swift */; };
 		ABEC5E49ADBAF2379C4A7DEC /* Pods_iOS_ChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE70FCDF93692A0CA198E74B /* Pods_iOS_ChallengeTests.framework */; };
 		C8220BFF3BDD46CD9BA23134 /* Pods_iOS_ChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F84841F00BE5BB24231DB24 /* Pods_iOS_ChallengeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		8778E6C022D73DAC00D0B5F8 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		8778E6C222D73F3400D0B5F8 /* KeyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
 		8778E6C422D741AB00D0B5F8 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		8778E6C622D78A2B00D0B5F8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
+		87C06F5622D793A300D0F40C /* APIEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntity.swift; sourceTree = "<group>"; };
 		87DE60B7DD21C6E1CFE9D2C4 /* Pods-iOS_ChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_ChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_ChallengeUITests/Pods-iOS_ChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B1E2383FBA67001BA739D4C4 /* Pods_iOS_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A0D14DEB5E05FE28388FA5 /* Pods-iOS_ChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_ChallengeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_ChallengeTests/Pods-iOS_ChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		871E3F4E22D6C25400094CCA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8778E6C622D78A2B00D0B5F8 /* UserDefaults+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 		871E3F4F22D6C27A00094CCA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				87C06F5322D7938100D0F40C /* Entity */,
 				8778E6BF22D73D8A00D0B5F8 /* Constants */,
 				8778E6BC22D731D200D0B5F8 /* External */,
 			);
@@ -203,6 +209,14 @@
 				8778E6C222D73F3400D0B5F8 /* KeyConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		87C06F5322D7938100D0F40C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				87C06F5622D793A300D0F40C /* APIEntity.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		D5B9828222F74C015CBCA56D /* Frameworks */ = {
@@ -531,8 +545,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8778E6C722D78A2B00D0B5F8 /* UserDefaults+.swift in Sources */,
 				871E3F2022D6C04000094CCA /* ViewController.swift in Sources */,
 				8778E6C122D73DAC00D0B5F8 /* URLConstants.swift in Sources */,
+				87C06F5722D793A300D0F40C /* APIEntity.swift in Sources */,
 				871E3F1E22D6C04000094CCA /* AppDelegate.swift in Sources */,
 				8778E6BE22D731ED00D0B5F8 /* Api.swift in Sources */,
 				871E3F4D22D6C24600094CCA /* R.generated.swift in Sources */,
