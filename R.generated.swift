@@ -75,14 +75,26 @@ struct _R: Rswift.Validatable {
     }
     
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = ViewController
+      typealias InitialController = LoginViewController
       
+      let authWebView = StoryboardViewControllerResource<AuthWebViewController>(identifier: "authWebView")
       let bundle = R.hostingBundle
+      let loginView = StoryboardViewControllerResource<LoginViewController>(identifier: "loginView")
       let name = "Main"
+      
+      func authWebView(_: Void = ()) -> AuthWebViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: authWebView)
+      }
+      
+      func loginView(_: Void = ()) -> LoginViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: loginView)
+      }
       
       static func validate() throws {
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.main().authWebView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authWebView' could not be loaded from storyboard 'Main' as 'AuthWebViewController'.") }
+        if _R.storyboard.main().loginView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginView' could not be loaded from storyboard 'Main' as 'LoginViewController'.") }
       }
       
       fileprivate init() {}

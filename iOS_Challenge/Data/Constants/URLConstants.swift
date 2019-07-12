@@ -28,16 +28,16 @@ struct URLConstants {
         ]
     }
     
+    static var authURL: String {
+        return "https://qiita.com/api/v2/oauth/authorize?client_id=8256b214e4a54852cf126fb28edd7130d37f2d5f&scope=read_qiita+write_qiita"
+    }
+    
     static var clientID: String {
         return "8256b214e4a54852cf126fb28edd7130d37f2d5f"
     }
     
     static var clientSecret: String {
         return "0ec56b02dd3dcf10ab91602a06ae40763cb1a4a5"
-    }
-    
-    static var scope: String {
-        return "read_qiita+write_qiita"
     }
     
     enum AppURL {
@@ -55,4 +55,5 @@ struct URLConstants {
             }
         }
     }
+    
 }

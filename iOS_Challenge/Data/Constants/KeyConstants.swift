@@ -12,3 +12,12 @@ struct AppKey {
         case token
     }
 }
+
+struct AppSetting {
+    
+    static let DeviceType = "iOS"
+    static let realmSchemaVersion = 1
+    static let realmOldSchemaVersion = 0
+    static let realmThresholdMB = 500
+    static let realmThresholdRatio = 0.5
+}

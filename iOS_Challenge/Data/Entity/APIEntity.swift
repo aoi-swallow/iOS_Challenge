@@ -20,3 +20,16 @@ struct AccessTokenRequest: Codable {
         case code
     }
 }
+
+struct AccessTokenResponse: Codable {
+    
+    var clientID: String
+    var scopes: [String]
+    var token: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case clientID = "client_id"
+        case scopes
+        case token
+    }
+}
