@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="xfo-3t-kci">
-                                <rect key="frame" x="107" y="528" width="200" height="105"/>
+                                <rect key="frame" x="107" y="450" width="200" height="105"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHU-ni-TbQ">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
@@ -50,8 +50,8 @@
                         <constraints>
                             <constraint firstItem="xfo-3t-kci" firstAttribute="leadingMargin" secondItem="SxA-sj-CxP" secondAttribute="leadingMargin" constant="87" id="MLp-0f-rU7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xfo-3t-kci" secondAttribute="trailing" constant="87" id="TiY-SG-QX9"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xfo-3t-kci" secondAttribute="bottom" constant="229" id="fnO-ut-8pd"/>
-                            <constraint firstItem="xfo-3t-kci" firstAttribute="top" secondItem="SxA-sj-CxP" secondAttribute="top" constant="528" id="y4w-IL-p8b"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xfo-3t-kci" secondAttribute="bottom" constant="230" id="fnO-ut-8pd"/>
+                            <constraint firstItem="xfo-3t-kci" firstAttribute="top" secondItem="SxA-sj-CxP" secondAttribute="top" constant="450" id="y4w-IL-p8b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gNC-ZV-tjc"/>
                     </view>

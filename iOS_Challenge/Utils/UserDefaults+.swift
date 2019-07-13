@@ -109,6 +109,5 @@ extension UserDefaults.Keys {
     
     public struct Auth {
         public static let code = UserDefaults.Key<String>("auth.code", defaultValue: "")
-        public static let url = UserDefaults.Key<String>("auth.url", defaultValue: "")
     }
 }
