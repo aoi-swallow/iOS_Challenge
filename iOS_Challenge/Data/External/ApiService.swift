@@ -32,16 +32,6 @@ enum ApiService {
     
     // MARK: GatewayApiServiceTargetType
     
-    // 認証許可
-    // - GET /api/v2/oauth/authorize
-    struct Authorize: GatewayApiServiceTargetType {
-        var method: Moya.Method { return .get }
-        var path: String { return URLConstants.AppURL.auth.path }
-        var task: Task {
-            return .requestParameters(parameters: ["client_id": URLConstants.clientID, "scope": URLConstants.scope], encoding: URLEncoding.default)
-        }
-    }
-    
     // アクセストークン取得
     // - POST /api/v2/access_tokens
     struct IssueAcceessToken: GatewayApiServiceTargetType {
