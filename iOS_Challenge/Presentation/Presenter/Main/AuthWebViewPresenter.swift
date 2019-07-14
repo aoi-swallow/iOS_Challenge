@@ -33,10 +33,12 @@ final class AuthWebViewPresenter: Presenter {
     
     var wireframe: AuthWebViewWireframe?
     var authUseCase: AuthUseCase?
+    var syncUseCase: SyncUseCase?
     
     func getAccessToken() {
         
         authUseCase?.getAccessToken()
+            .flatMap { _ in (self.syncUseCase?.getLaunchData())!}
             .subscribe { [weak self] result in
                 switch result {
                 case .success(_):

@@ -35,5 +35,7 @@ struct LoginViewWireframe: Wireframe {
     
     func showMainView() {
         
+        let nextViewController = MainTabBarBuilder.build()
+        self.viewController?.present(nextViewController, animated: true, completion: nil)
     }
 }

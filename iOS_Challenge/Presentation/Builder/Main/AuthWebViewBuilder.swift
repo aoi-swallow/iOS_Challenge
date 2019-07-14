@@ -23,7 +23,10 @@ struct AuthWebViewBuilder: ViewControllerBuilder {
         
         let dataStore: AuthDataStore = AuthDataStoreImpl()
         let authUseCase: AuthUseCase = AuthUseCaseImpl(dataStore)
+        let syncDataStore: SyncDataStore = SyncDataStoreImpl()
+        let syncUseCase: SyncUseCase = SyncUseCaseImpl(syncDataStore)
         presenter.authUseCase = authUseCase
+        presenter.syncUseCase = syncUseCase
         viewController?.presenter = presenter
         
         return viewController!

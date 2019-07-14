@@ -64,6 +64,19 @@
             </objects>
             <point key="canvasLocation" x="-497.10144927536237" y="203.57142857142856"/>
         </scene>
+        <!--Auth Navigation Bar Controller-->
+        <scene sceneID="MVB-oO-pWq">
+            <objects>
+                <navigationController storyboardIdentifier="authNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="E5M-6a-eID" customClass="AuthNavigationBarController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KVy-sZ-roX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ua-tZ-cHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="504" y="204"/>
+        </scene>
         <!--Auth Web View Controller-->
         <scene sceneID="FlK-1o-Ycj">
             <objects>
@@ -77,7 +90,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5o-CW-p9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539" y="204"/>
+            <point key="canvasLocation" x="1506" y="204"/>
+        </scene>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="nd6-6S-1ek">
+            <objects>
+                <tabBarController storyboardIdentifier="mainTabBar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nXZ-PZ-20R" customClass="MainTabBarController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b0S-CF-JgM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xmw-PQ-GAz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-455" y="1051"/>
         </scene>
     </scenes>
 </document>

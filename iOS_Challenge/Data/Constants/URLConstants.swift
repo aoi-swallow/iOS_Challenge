@@ -43,14 +43,20 @@ struct URLConstants {
     enum AppURL {
         case auth
         case accessToken
+        case authorizedUser
+        case stockedItem(userID: String)
         case items
+        case like(itemID: String)
         case stock(itemID: String)
         
         public var path: String {
             switch self {
             case .auth: return "/api/v2/oauth/authorize"
             case .accessToken: return "/api/v2/access_tokens"
+            case .authorizedUser: return "/api/v2/authenticated_user"
+            case .stockedItem(let userID): return "/api/v2/users/\(userID)/stocks"
             case .items: return "/api/v2/items"
+            case .like(let itemID): return "/api/v2/items/\(itemID)/likes"
             case .stock(let itemID): return "/api/v2/items/\(itemID)/stock"
             }
         }
