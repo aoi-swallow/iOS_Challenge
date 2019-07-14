@@ -48,7 +48,30 @@ enum ApiService {
     
     // MARK: ApiServiceTargetType
     
-    // 記事一覧取得
+    // ログインユーザー情報取得
+    // - GET /api/v2/authenticated_user
+    struct UserInfoGet: ApiServiceTargetType {
+        
+        var method: Moya.Method { return .get}
+        var path: String { return URLConstants.AppURL.authorizedUser.path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // ログインユーザーストック記事取得
+    // - GET /api/v2/users/:user_id/stocks
+    struct LoginUserStocksGet: ApiServiceTargetType {
+        let userID = UserDefaults.Keys.Auth.userID.value()
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.stockedItem(userID: userID).path}
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // 記事取得
     // - GET /api/v2/items
     struct ItemsGet: ApiServiceTargetType {
         let query: String
@@ -58,6 +81,18 @@ enum ApiService {
         var path: String { return URLConstants.AppURL.items.path }
         var task: Task {
             return .requestParameters(parameters: ["per_page": 10,"query": query, "page": page], encoding: URLEncoding.default)
+        }
+    }
+    
+    // いいねユーザー一覧取得
+    // - CET /api/v2/items/:item_id/likes
+    struct LikedUsersGet: ApiServiceTargetType {
+        var itemID: String
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.like(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
         }
     }
     

@@ -16,12 +16,92 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  /// This `R.file` struct is generated, and contains static references to 1 files.
+  struct file {
+    /// Resource file `tag.png`.
+    static let tagPng = Rswift.FileResource(bundle: R.hostingBundle, name: "tag", pathExtension: "png")
+    
+    /// `bundle.url(forResource: "tag", withExtension: "png")`
+    static func tagPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.tagPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.image` struct is generated, and contains static references to 1 images.
+  struct image {
+    /// Image `tag`.
+    static let tag = Rswift.ImageResource(bundle: R.hostingBundle, name: "tag")
+    
+    /// `UIImage(named: "tag", bundle: ..., traitCollection: ...)`
+    static func tag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tag, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  struct nib {
+    /// Nib `ArticleOutlineCell`.
+    static let articleOutlineCell = _R.nib._ArticleOutlineCell()
+    /// Nib `LoadingCell`.
+    static let loadingCell = _R.nib._LoadingCell()
+    
+    /// `UINib(name: "ArticleOutlineCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.articleOutlineCell) instead")
+    static func articleOutlineCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.articleOutlineCell)
+    }
+    
+    /// `UINib(name: "LoadingCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.loadingCell) instead")
+    static func loadingCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.loadingCell)
+    }
+    
+    static func articleOutlineCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ArticleOutlineCell? {
+      return R.nib.articleOutlineCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ArticleOutlineCell
+    }
+    
+    static func loadingCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LoadingCell? {
+      return R.nib.loadingCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LoadingCell
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `articleOutlineCell`.
+    static let articleOutlineCell: Rswift.ReuseIdentifier<ArticleOutlineCell> = Rswift.ReuseIdentifier(identifier: "articleOutlineCell")
+    /// Reuse identifier `loadingCell`.
+    static let loadingCell: Rswift.ReuseIdentifier<LoadingCell> = Rswift.ReuseIdentifier(identifier: "loadingCell")
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
+    /// Storyboard `Articles`.
+    static let articles = _R.storyboard.articles()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `Search`.
+    static let search = _R.storyboard.search()
+    /// Storyboard `Stock`.
+    static let stock = _R.storyboard.stock()
+    /// Storyboard `UserInfo`.
+    static let userInfo = _R.storyboard.userInfo()
+    
+    /// `UIStoryboard(name: "Articles", bundle: ...)`
+    static func articles(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.articles)
+    }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
@@ -31,6 +111,21 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    
+    /// `UIStoryboard(name: "Search", bundle: ...)`
+    static func search(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.search)
+    }
+    
+    /// `UIStoryboard(name: "Stock", bundle: ...)`
+    static func stock(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.stock)
+    }
+    
+    /// `UIStoryboard(name: "UserInfo", bundle: ...)`
+    static func userInfo(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.userInfo)
     }
     
     fileprivate init() {}
@@ -52,12 +147,85 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
+  }
+  
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _ArticleOutlineCell.validate()
+    }
+    
+    struct _ArticleOutlineCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = ArticleOutlineCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "articleOutlineCell"
+      let name = "ArticleOutlineCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ArticleOutlineCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ArticleOutlineCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "tag.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'tag.png' is used in nib 'ArticleOutlineCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _LoadingCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = LoadingCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "loadingCell"
+      let name = "LoadingCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LoadingCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LoadingCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try articles.validate()
       try launchScreen.validate()
       try main.validate()
+      try search.validate()
+      try stock.validate()
+      try userInfo.validate()
+    }
+    
+    struct articles: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = ArticlesNavigationController
+      
+      let articlesListView = StoryboardViewControllerResource<ArticlesListViewController>(identifier: "articlesListView")
+      let articlesNav = StoryboardViewControllerResource<ArticlesNavigationController>(identifier: "articlesNav")
+      let bundle = R.hostingBundle
+      let name = "Articles"
+      
+      func articlesListView(_: Void = ()) -> ArticlesListViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: articlesListView)
+      }
+      
+      func articlesNav(_: Void = ()) -> ArticlesNavigationController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: articlesNav)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.articles().articlesListView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'articlesListView' could not be loaded from storyboard 'Articles' as 'ArticlesListViewController'.") }
+        if _R.storyboard.articles().articlesNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'articlesNav' could not be loaded from storyboard 'Articles' as 'ArticlesNavigationController'.") }
+      }
+      
+      fileprivate init() {}
     }
     
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -77,10 +245,16 @@ struct _R: Rswift.Validatable {
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = LoginViewController
       
+      let authNav = StoryboardViewControllerResource<AuthNavigationBarController>(identifier: "authNav")
       let authWebView = StoryboardViewControllerResource<AuthWebViewController>(identifier: "authWebView")
       let bundle = R.hostingBundle
       let loginView = StoryboardViewControllerResource<LoginViewController>(identifier: "loginView")
+      let mainTabBar = StoryboardViewControllerResource<MainTabBarController>(identifier: "mainTabBar")
       let name = "Main"
+      
+      func authNav(_: Void = ()) -> AuthNavigationBarController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: authNav)
+      }
       
       func authWebView(_: Void = ()) -> AuthWebViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: authWebView)
@@ -90,11 +264,77 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: loginView)
       }
       
+      func mainTabBar(_: Void = ()) -> MainTabBarController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: mainTabBar)
+      }
+      
       static func validate() throws {
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.main().authNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authNav' could not be loaded from storyboard 'Main' as 'AuthNavigationBarController'.") }
         if _R.storyboard.main().authWebView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authWebView' could not be loaded from storyboard 'Main' as 'AuthWebViewController'.") }
         if _R.storyboard.main().loginView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginView' could not be loaded from storyboard 'Main' as 'LoginViewController'.") }
+        if _R.storyboard.main().mainTabBar() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'mainTabBar' could not be loaded from storyboard 'Main' as 'MainTabBarController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct search: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = SearchNavigationBarController
+      
+      let bundle = R.hostingBundle
+      let name = "Search"
+      let searchNav = StoryboardViewControllerResource<SearchNavigationBarController>(identifier: "searchNav")
+      
+      func searchNav(_: Void = ()) -> SearchNavigationBarController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchNav)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.search().searchNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchNav' could not be loaded from storyboard 'Search' as 'SearchNavigationBarController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct stock: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = StockNavigationBarController
+      
+      let bundle = R.hostingBundle
+      let name = "Stock"
+      let stockNav = StoryboardViewControllerResource<StockNavigationBarController>(identifier: "stockNav")
+      
+      func stockNav(_: Void = ()) -> StockNavigationBarController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: stockNav)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.stock().stockNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'stockNav' could not be loaded from storyboard 'Stock' as 'StockNavigationBarController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct userInfo: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = UserInfoNavigationBarController
+      
+      let bundle = R.hostingBundle
+      let name = "UserInfo"
+      let userInfoNav = StoryboardViewControllerResource<UserInfoNavigationBarController>(identifier: "userInfoNav")
+      
+      func userInfoNav(_: Void = ()) -> UserInfoNavigationBarController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: userInfoNav)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.userInfo().userInfoNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'userInfoNav' could not be loaded from storyboard 'UserInfo' as 'UserInfoNavigationBarController'.") }
       }
       
       fileprivate init() {}

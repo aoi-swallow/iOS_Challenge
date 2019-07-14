@@ -16,6 +16,8 @@ target 'iOS_Challenge' do
   pod 'SideMenu'
   pod 'Parchment'
   pod 'JGProgressHUD'
+  pod 'SwiftyJSON'
+  pod 'SDWebImage'
 
   target 'iOS_ChallengeTests' do
     inherit! :search_paths

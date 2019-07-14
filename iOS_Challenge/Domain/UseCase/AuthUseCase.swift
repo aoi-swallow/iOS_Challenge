@@ -6,7 +6,6 @@
 //  Copyright © 2019 Aoi Okawa. All rights reserved.
 //
 
-import Moya
 import RxSwift
 
 // MARK: - AuthUseCase

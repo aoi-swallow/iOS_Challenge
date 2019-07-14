@@ -30,6 +30,7 @@ struct AuthWebViewWireframe: Wireframe {
     
     func showMainView() {
         
-        self.viewController?.present(UIViewController(), animated: true, completion: nil)
+        let nextViewController = MainTabBarBuilder.build()
+        self.viewController?.present(nextViewController, animated: true, completion: nil)
     }
 }

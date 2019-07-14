@@ -21,3 +21,10 @@ struct AppSetting {
     static let realmThresholdMB = 500
     static let realmThresholdRatio = 0.5
 }
+
+// MARK: LoadStatus
+enum LoadStatus {
+    case initial
+    case fetching
+    case full
+}
