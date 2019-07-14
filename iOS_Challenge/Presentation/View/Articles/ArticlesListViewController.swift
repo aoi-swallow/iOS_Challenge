@@ -23,6 +23,8 @@ final class ArticlesListViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.navigationItem.title = "フィード"
+        
         self.tableView.register(R.nib.articleOutlineCell)
         self.tableView.delegate = self
         self.tableView.dataSource = self
