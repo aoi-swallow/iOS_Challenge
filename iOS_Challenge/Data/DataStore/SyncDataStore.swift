@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: - SyncDataStore
 protocol SyncDataStore {
     func getAuthorizedUserInfo() -> Single<Void>
-    func getStockedItems() -> Single<Void>
+    func getStockedItems(page: Int) -> Single<ArticlesItemListEntity>
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
     func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
     func checkLiked(itemID: String) -> Single<Response>
@@ -57,25 +57,20 @@ final class SyncDataStoreImpl: SyncDataStore {
         }
     }
     
-    func getStockedItems() -> Single<Void> {
+    func getStockedItems(page: Int) -> Single<ArticlesItemListEntity> {
         
-        let task = Api.shared.request(ApiService.LoginUserStocksGet())
+        let task = Api.shared.request(ApiService.LoginUserStocksGet(page: page))
         return task.flatMap { response in
-            return Single.create { [weak self] observer in
-                var items: [StockItemEntity] = []
-                do {
-                    items = try JSONDecoder().decode([StockItemEntity].self, from: response.data)
-                } catch {
-                    observer(.error(error))
+            return Single.create { observer in
+                let json = JSON(response.data)
+                let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json, count: 10)
+                if items.articles.isEmpty {
+                    observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
+                    return Disposables.create()
+                } else {
+                    observer(.success(items))
                     return Disposables.create()
                 }
-                self?.realm.writeBackground(block: { (realm) in
-                    realm.add(items, update: .all)
-                }, completion: {
-                    print("StockItems Persed")
-                    observer(.success(()))
-                })
-                return Disposables.create()
             }
         }
     }

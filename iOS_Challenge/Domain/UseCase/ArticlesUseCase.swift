@@ -22,6 +22,7 @@ protocol ArticlesUseCase {
     func deleteStock(itemID: String) -> Single<Response>
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
     func readTags() -> [TagDetailEntity]
+    func getStockedItems(page: Int) -> Single<ArticlesItemListEntity>
 }
 
 // MARK: - ArticlesUseCaseImpl
@@ -89,5 +90,10 @@ final class ArticlesUseCaseImpl: ArticlesUseCase {
         
         let tags = queryDataStore.readAll(TagDetailEntity.self)
         return tags
+    }
+    
+    func getStockedItems(page: Int) -> Single<ArticlesItemListEntity> {
+        
+        return syncDataStore.getStockedItems(page: page)
     }
 }

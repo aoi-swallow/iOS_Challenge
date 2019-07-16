@@ -24,6 +24,9 @@ final class SearchViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.navigationItem.title = "検索"
+        self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.searchBar.delegate = self

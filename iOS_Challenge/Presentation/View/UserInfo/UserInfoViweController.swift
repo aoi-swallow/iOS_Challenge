@@ -23,6 +23,9 @@ final class UserInfoViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.navigationItem.title = "ユーザー情報"
+        self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
+        
         self.tableView.register(R.nib.userOutlineCell)
         self.tableView.register(R.nib.articleOutlineCell)
         self.tableView.delegate = self

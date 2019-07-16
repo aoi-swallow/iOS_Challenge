@@ -19,8 +19,10 @@ struct StockNavBuilder: ViewControllerBuilder {
     static func build() -> StockNavigationBarController {
         
         let navigationController = R.storyboard.stock.stockNav()
+        let viewController = StockArticlesViewBuilder.build()
         
         navigationController?.viewControllers = []
+        navigationController?.viewControllers.append(viewController)
         
         return navigationController!
     }
