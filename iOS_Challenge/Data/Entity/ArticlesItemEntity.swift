@@ -39,8 +39,8 @@ class ArticlesItemListEntity {
     
     var articles: [ArticlesItemEntity] = []
     
-    required init(json: JSON) {
-        for i in 0..<10 {
+    required init(json: JSON, count: Int) {
+        for i in 0..<count {
             self.articles.append(ArticlesItemEntity(json: json, index: i))
         }
     }

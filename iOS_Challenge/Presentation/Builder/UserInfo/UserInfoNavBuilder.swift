@@ -19,8 +19,10 @@ struct UserInfoNavBuilder: ViewControllerBuilder {
     static func build() -> UserInfoNavigationBarController {
         
         let navigationController = R.storyboard.userInfo.userInfoNav()
+        let viewController = UserInfoViewBuilder.build()
         
         navigationController?.viewControllers = []
+        navigationController?.viewControllers.append(viewController)
         
         return navigationController!
     }

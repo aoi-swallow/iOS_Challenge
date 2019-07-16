@@ -118,7 +118,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `ArticleOutlineCell`.
     static let articleOutlineCell = _R.nib._ArticleOutlineCell()
@@ -126,6 +126,8 @@ struct R: Rswift.Validatable {
     static let likedUserCell = _R.nib._LikedUserCell()
     /// Nib `LoadingCell`.
     static let loadingCell = _R.nib._LoadingCell()
+    /// Nib `UserOutlineCell`.
+    static let userOutlineCell = _R.nib._UserOutlineCell()
     
     /// `UINib(name: "ArticleOutlineCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.articleOutlineCell) instead")
@@ -145,6 +147,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.loadingCell)
     }
     
+    /// `UINib(name: "UserOutlineCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.userOutlineCell) instead")
+    static func userOutlineCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.userOutlineCell)
+    }
+    
     static func articleOutlineCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ArticleOutlineCell? {
       return R.nib.articleOutlineCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ArticleOutlineCell
     }
@@ -157,10 +165,14 @@ struct R: Rswift.Validatable {
       return R.nib.loadingCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LoadingCell
     }
     
+    static func userOutlineCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserOutlineCell? {
+      return R.nib.userOutlineCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserOutlineCell
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 4 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `articleOutlineCell`.
     static let articleOutlineCell: Rswift.ReuseIdentifier<ArticleOutlineCell> = Rswift.ReuseIdentifier(identifier: "articleOutlineCell")
@@ -168,6 +180,8 @@ struct R: Rswift.Validatable {
     static let likedUserCell: Rswift.ReuseIdentifier<LikedUserCell> = Rswift.ReuseIdentifier(identifier: "likedUserCell")
     /// Reuse identifier `loadingCell`.
     static let loadingCell: Rswift.ReuseIdentifier<LoadingCell> = Rswift.ReuseIdentifier(identifier: "loadingCell")
+    /// Reuse identifier `userOutlineCell`.
+    static let userOutlineCell: Rswift.ReuseIdentifier<UserOutlineCell> = Rswift.ReuseIdentifier(identifier: "userOutlineCell")
     
     fileprivate init() {}
   }
@@ -287,6 +301,20 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LoadingCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LoadingCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _UserOutlineCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = UserOutlineCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "userOutlineCell"
+      let name = "UserOutlineCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserOutlineCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserOutlineCell
       }
       
       fileprivate init() {}
@@ -443,15 +471,21 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "UserInfo"
       let userInfoNav = StoryboardViewControllerResource<UserInfoNavigationBarController>(identifier: "userInfoNav")
+      let userInfoView = StoryboardViewControllerResource<UserInfoViewController>(identifier: "userInfoView")
       
       func userInfoNav(_: Void = ()) -> UserInfoNavigationBarController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: userInfoNav)
+      }
+      
+      func userInfoView(_: Void = ()) -> UserInfoViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: userInfoView)
       }
       
       static func validate() throws {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.userInfo().userInfoNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'userInfoNav' could not be loaded from storyboard 'UserInfo' as 'UserInfoNavigationBarController'.") }
+        if _R.storyboard.userInfo().userInfoView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'userInfoView' could not be loaded from storyboard 'UserInfo' as 'UserInfoViewController'.") }
       }
       
       fileprivate init() {}

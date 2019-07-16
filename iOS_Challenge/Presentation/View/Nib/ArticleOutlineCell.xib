@@ -98,6 +98,7 @@
             <connections>
                 <outlet property="dateLabel" destination="AhZ-6X-1bz" id="BCq-2j-CI2"/>
                 <outlet property="iconImageView" destination="JYc-tr-R7c" id="xJa-4b-JWe"/>
+                <outlet property="tagImageView" destination="4g8-ix-rZu" id="WS5-fe-fwp"/>
                 <outlet property="tagLabel" destination="50H-nQ-ZV0" id="Eoz-Bt-rFK"/>
                 <outlet property="titleLabel" destination="6FZ-MG-l3y" id="dSE-KN-dlm"/>
                 <outlet property="userNameLabel" destination="VSW-0f-a4K" id="yp4-K3-2hW"/>

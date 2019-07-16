@@ -50,6 +50,7 @@ struct URLConstants {
         case likeList(itemID: String)
         case like(itemID: String)
         case stock(itemID: String)
+        case authorizedUserItems
         
         public var path: String {
             switch self {
@@ -62,6 +63,7 @@ struct URLConstants {
             case .likeList(let itemID): return "/api/v2/items/\(itemID)/likes"
             case .like(let itemID): return "/api/v2/items/\(itemID)/like"
             case .stock(let itemID): return "/api/v2/items/\(itemID)/stock"
+            case .authorizedUserItems: return "/api/v2/authenticated_user/items"
             }
         }
     }

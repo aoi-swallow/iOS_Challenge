@@ -179,4 +179,16 @@ enum ApiService {
             return .requestPlain
         }
     }
+    
+    // 認証中ユーザーの記事取得
+    // - GET /api/v2/authenticated_user/items
+    struct AuthorizedUserItemsGet: ApiServiceTargetType {
+        var page: Int
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.authorizedUserItems.path}
+        var task: Task {
+            return .requestParameters(parameters: ["per_page": 10, "page": page], encoding: URLEncoding.default)
+        }
+    }
 }

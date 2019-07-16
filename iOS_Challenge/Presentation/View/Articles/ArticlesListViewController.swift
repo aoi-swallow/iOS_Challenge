@@ -78,10 +78,7 @@ final class ArticlesListViewController: UIViewController {
     var presenter: ArticlesListViewPresenter?
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffsetY = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        let distanceToBottom = maximumOffset - currentOffsetY
-        if distanceToBottom < 500 && tableView.isDragging {
+        if (self.tableView.contentOffset.y + self.tableView.frame.size.height > self.tableView.contentSize.height && self.tableView.isDragging){
             self.presenter?.getData()
         }
     }
