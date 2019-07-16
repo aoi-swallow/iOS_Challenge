@@ -19,8 +19,10 @@ struct SearchNavBuilder: ViewControllerBuilder {
     static func build() -> SearchNavigationBarController {
         
         let navigationController = R.storyboard.search.searchNav()
+        let viewController = SearchViewBuilder.build()
         
         navigationController?.viewControllers = []
+        navigationController?.viewControllers.append(viewController)
         
         return navigationController!
     }

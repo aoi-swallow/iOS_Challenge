@@ -23,6 +23,10 @@ struct SearchViewBuilder: ViewControllerBuilder {
         let wireframe = SearchViewWireframe(viewController!)
         presenter.wireframe = wireframe
         
+        let syncDataStore: SyncDataStore = SyncDataStoreImpl()
+        let queryDataStore: QueryDataStore = QueryDataStoreImpl()
+        let articlesUseCase: ArticlesUseCase = ArticlesUseCaseImpl(syncDataStore: syncDataStore, queryDataStore: queryDataStore)
+        presenter.articlesUseCase = articlesUseCase
         viewController?.presenter = presenter
         return viewController!
     }

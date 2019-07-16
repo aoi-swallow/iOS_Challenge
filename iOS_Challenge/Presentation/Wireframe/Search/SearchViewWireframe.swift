@@ -28,5 +28,11 @@ struct SearchViewWireframe: Wireframe {
     
     
     // MARK: Internal
-
+    
+    func showResultView(query: String) {
+        
+        let nextViewController = SearchResultViewBuilder.build()
+        nextViewController.presenter?.query = query
+        viewController?.navigationController?.pushViewController(nextViewController, animated: true)
+    }
 }

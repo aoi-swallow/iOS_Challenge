@@ -22,7 +22,8 @@ struct LikedUserViewBuilder: ViewControllerBuilder {
         let presenter = LikedUserViewPresenter(viewController!)
         
         let syncDataStore: SyncDataStore = SyncDataStoreImpl()
-        let articlesUseCase: ArticlesUseCase = ArticlesUseCaseImpl(syncDataStore)
+        let queryDataStore: QueryDataStore = QueryDataStoreImpl()
+        let articlesUseCase: ArticlesUseCase = ArticlesUseCaseImpl(syncDataStore: syncDataStore, queryDataStore: queryDataStore)
         presenter.articlesUseCase = articlesUseCase
         
         viewController?.presenter = presenter

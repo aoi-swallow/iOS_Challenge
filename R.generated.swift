@@ -172,7 +172,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 4 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `articleOutlineCell`.
     static let articleOutlineCell: Rswift.ReuseIdentifier<ArticleOutlineCell> = Rswift.ReuseIdentifier(identifier: "articleOutlineCell")
@@ -180,6 +180,8 @@ struct R: Rswift.Validatable {
     static let likedUserCell: Rswift.ReuseIdentifier<LikedUserCell> = Rswift.ReuseIdentifier(identifier: "likedUserCell")
     /// Reuse identifier `loadingCell`.
     static let loadingCell: Rswift.ReuseIdentifier<LoadingCell> = Rswift.ReuseIdentifier(identifier: "loadingCell")
+    /// Reuse identifier `searchWordCell`.
+    static let searchWordCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "searchWordCell")
     /// Reuse identifier `userOutlineCell`.
     static let userOutlineCell: Rswift.ReuseIdentifier<UserOutlineCell> = Rswift.ReuseIdentifier(identifier: "userOutlineCell")
     
@@ -431,10 +433,15 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "Search"
       let searchNav = StoryboardViewControllerResource<SearchNavigationBarController>(identifier: "searchNav")
+      let searchResultView = StoryboardViewControllerResource<SearchResultViewController>(identifier: "searchResultView")
       let searchView = StoryboardViewControllerResource<SearchViewController>(identifier: "searchView")
       
       func searchNav(_: Void = ()) -> SearchNavigationBarController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchNav)
+      }
+      
+      func searchResultView(_: Void = ()) -> SearchResultViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchResultView)
       }
       
       func searchView(_: Void = ()) -> SearchViewController? {
@@ -445,6 +452,7 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.search().searchNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchNav' could not be loaded from storyboard 'Search' as 'SearchNavigationBarController'.") }
+        if _R.storyboard.search().searchResultView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchResultView' could not be loaded from storyboard 'Search' as 'SearchResultViewController'.") }
         if _R.storyboard.search().searchView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchView' could not be loaded from storyboard 'Search' as 'SearchViewController'.") }
       }
       

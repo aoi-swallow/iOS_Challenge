@@ -26,6 +26,7 @@ protocol SyncDataStore {
     func deleteStock(itemID: String) -> Single<Response>
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
     func getAuthorizedUsersItems(page: Int) -> Single<ArticlesItemListEntity>
+    func getFollowingTags() -> Single<Void>
 }
 
 // MARK: - SyncDataStoreImpl
@@ -172,6 +173,28 @@ final class SyncDataStoreImpl: SyncDataStore {
                     observer(.success(items))
                     return Disposables.create()
                 }
+            }
+        }
+    }
+    
+    func getFollowingTags() -> Single<Void> {
+        
+        let task = Api.shared.request(ApiService.FollowingTagsGet())
+        return task.flatMap { [weak self] response in
+            return Single.create { [weak self] observer in
+                var tags: [TagDetailEntity] = []
+                do {
+                    tags = try JSONDecoder().decode([TagDetailEntity].self, from: response.data)
+                } catch {
+                    observer(.error(error))
+                    return Disposables.create()
+                }
+                try! self?.realm.write {
+                    self?.realm.add(tags, update: .all)
+                }
+                print("TagData Persed")
+                observer(.success(()))
+                return Disposables.create()
             }
         }
     }

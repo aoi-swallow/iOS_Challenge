@@ -191,4 +191,16 @@ enum ApiService {
             return .requestParameters(parameters: ["per_page": 10, "page": page], encoding: URLEncoding.default)
         }
     }
+    
+    // ユーザーがフォローしているタグ一覧
+    // - GET /api/v2/users/:user_id/following_tags
+    struct FollowingTagsGet: ApiServiceTargetType {
+        let userID = UserDefaults.Keys.Auth.userID.value()
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.likeList(itemID: userID).path }
+        var task: Task {
+            return .requestParameters(parameters: ["page": 1, "per_page": 100], encoding: URLEncoding.default)
+        }
+    }
 }
