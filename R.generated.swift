@@ -464,7 +464,12 @@ struct _R: Rswift.Validatable {
       
       let bundle = R.hostingBundle
       let name = "Stock"
+      let stockArticlesView = StoryboardViewControllerResource<StockArticlesViewController>(identifier: "stockArticlesView")
       let stockNav = StoryboardViewControllerResource<StockNavigationBarController>(identifier: "stockNav")
+      
+      func stockArticlesView(_: Void = ()) -> StockArticlesViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: stockArticlesView)
+      }
       
       func stockNav(_: Void = ()) -> StockNavigationBarController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: stockNav)
@@ -473,6 +478,7 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.stock().stockArticlesView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'stockArticlesView' could not be loaded from storyboard 'Stock' as 'StockArticlesViewController'.") }
         if _R.storyboard.stock().stockNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'stockNav' could not be loaded from storyboard 'Stock' as 'StockNavigationBarController'.") }
       }
       

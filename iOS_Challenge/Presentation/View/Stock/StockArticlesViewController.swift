@@ -1,8 +1,8 @@
 //
-//  ArticlesListViewController.swift
+//  StockArticlesViewController.swift
 //  iOS_Challenge
 //
-//  Created by 大川葵 on 2019/07/14.
+//  Created by 大川葵 on 2019/07/17.
 //  Copyright © 2019 Aoi Okawa. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-// MARK: - ArticlesListViewController
-final class ArticlesListViewController: UIViewController {
+// MARK: - StockArticlesViewController
+final class StockArticlesViewController: UIViewController {
     
     
     // MARK: UIViewController
@@ -23,7 +23,7 @@ final class ArticlesListViewController: UIViewController {
         
         super.viewDidLoad()
         
-        self.navigationItem.title = "フィード"
+        self.navigationItem.title = "ストック"
         self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
         
         self.tableView.register(R.nib.articleOutlineCell)
@@ -76,7 +76,7 @@ final class ArticlesListViewController: UIViewController {
     
     // MARK: Internal
     
-    var presenter: ArticlesListViewPresenter?
+    var presenter: StockArticlesViewPresenter?
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (self.tableView.contentOffset.y + self.tableView.frame.size.height > self.tableView.contentSize.height && self.tableView.isDragging){
@@ -86,7 +86,7 @@ final class ArticlesListViewController: UIViewController {
 }
 
 // MARK: UITableViewDelegate
-extension ArticlesListViewController: UITableViewDelegate {
+extension StockArticlesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -100,7 +100,7 @@ extension ArticlesListViewController: UITableViewDelegate {
 }
 
 // MARK: UITableViewDataStore
-extension ArticlesListViewController: UITableViewDataSource {
+extension StockArticlesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

@@ -63,11 +63,12 @@ enum ApiService {
     // - GET /api/v2/users/:user_id/stocks
     struct LoginUserStocksGet: ApiServiceTargetType {
         let userID = UserDefaults.Keys.Auth.userID.value()
+        var page: Int
         
         var method: Moya.Method { return .get }
         var path: String { return URLConstants.AppURL.stockedItem(userID: userID).path}
         var task: Task {
-            return .requestPlain
+            return .requestParameters(parameters: ["page": page, "per_page": 10], encoding: URLEncoding.default)
         }
     }
     
@@ -168,7 +169,7 @@ enum ApiService {
         }
     }
     
-    // 記事をストックする
+    // 記事のストックを確認する
     // - GET /api/v2/items/:item_id/stock
     struct StockCheck: ApiServiceTargetType {
         let itemID: String

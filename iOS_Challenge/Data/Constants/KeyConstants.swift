@@ -15,7 +15,6 @@ struct AppKey {
 
 struct AppSetting {
     
-    static let DeviceType = "iOS"
     static let realmSchemaVersion = 1
     static let realmOldSchemaVersion = 0
     static let realmThresholdMB = 500
