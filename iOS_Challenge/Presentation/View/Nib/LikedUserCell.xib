@@ -49,8 +49,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="iconImageView" destination="4SX-9n-Q8Y" id="kfV-jN-0nC"/>
-                <outlet property="userNameLabel" destination="euH-WP-9bp" id="JR6-bf-1CG"/>
+                <outlet property="iconImageView" destination="4SX-9n-Q8Y" id="Y9r-jA-UUn"/>
+                <outlet property="userNameLabel" destination="euH-WP-9bp" id="324-Bc-XGY"/>
             </connections>
         </tableViewCell>
     </objects>

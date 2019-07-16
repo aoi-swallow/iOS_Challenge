@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,6 +26,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6Q-lZ-MDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-486" y="119"/>
+        </scene>
+        <!--User Info View Controller-->
+        <scene sceneID="w6R-CB-5sr">
+            <objects>
+                <viewController storyboardIdentifier="userInfoView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ny8-DF-iQH" customClass="UserInfoViewController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Izb-ev-HoR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dpb-NY-wFO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dpb-NY-wFO" firstAttribute="bottom" secondItem="vr1-T9-Tfv" secondAttribute="bottom" id="Osf-h2-aNW"/>
+                            <constraint firstItem="dpb-NY-wFO" firstAttribute="leading" secondItem="Izb-ev-HoR" secondAttribute="leading" id="Qkh-N6-SIF"/>
+                            <constraint firstItem="dpb-NY-wFO" firstAttribute="top" secondItem="vr1-T9-Tfv" secondAttribute="top" id="aAC-3N-ZCY"/>
+                            <constraint firstAttribute="trailing" secondItem="dpb-NY-wFO" secondAttribute="trailing" id="yjs-23-WPI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vr1-T9-Tfv"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="dpb-NY-wFO" id="Bh5-1R-VdR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptd-Ds-02A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="418.84057971014494" y="124.55357142857142"/>
         </scene>
     </scenes>
 </document>

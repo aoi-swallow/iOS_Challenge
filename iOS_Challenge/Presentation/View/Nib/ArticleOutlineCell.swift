@@ -16,6 +16,7 @@ class ArticleOutlineCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,8 +37,19 @@ class ArticleOutlineCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setHidden() {
+        
+        iconImageView.image = nil
+        userNameLabel.text = ""
+        dateLabel.text = ""
+        titleLabel.text = ""
+        tagLabel.text = ""
+        tagImageView.isHidden = true
+    }
+    
     func setItem(_ item: ArticlesItemEntity) {
         
+        tagImageView.isHidden = false
         let date = item.updatedAt.components(separatedBy: "T")[0]
         userNameLabel.text = item.userName
         dateLabel.text = date

@@ -25,6 +25,7 @@ protocol SyncDataStore {
     func putStock(itemID: String) -> Single<Response>
     func deleteStock(itemID: String) -> Single<Response>
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
+    func getAuthorizedUsersItems(page: Int) -> Single<ArticlesItemListEntity>
 }
 
 // MARK: - SyncDataStoreImpl
@@ -84,7 +85,7 @@ final class SyncDataStoreImpl: SyncDataStore {
         return task.flatMap { response in
             return Single.create { observer in
                 let json = JSON(response.data)
-                let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json)
+                let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json, count: 10)
                 if items.articles.isEmpty {
                     observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
                     return Disposables.create()
@@ -151,6 +152,24 @@ final class SyncDataStoreImpl: SyncDataStore {
                     return Disposables.create()
                 } else {
                     observer(.success(item))
+                    return Disposables.create()
+                }
+            }
+        }
+    }
+    
+    func getAuthorizedUsersItems(page: Int) -> Single<ArticlesItemListEntity> {
+        
+        let task = Api.shared.request(ApiService.AuthorizedUserItemsGet(page: page))
+        return task.flatMap { response in
+            return Single.create { observer in
+                let json = JSON(response.data)
+                let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json, count: 10)
+                if items.articles.isEmpty {
+                    observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
+                    return Disposables.create()
+                } else {
+                    observer(.success(items))
                     return Disposables.create()
                 }
             }
