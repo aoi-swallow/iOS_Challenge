@@ -68,12 +68,6 @@ final class ArticlesListViewPresenter: Presenter {
         .disposed(by: disposeBag)
     }
     
-    func resetResult() {
-        
-        self.articles = []
-        self.page = 1
-    }
-    
     func selectCell(index: Int) {
         
         wireframe?.showDetailView(articles[index])

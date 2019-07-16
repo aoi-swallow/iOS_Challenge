@@ -68,6 +68,13 @@ extension UserInfoViewController: UITableViewDelegate {
             return 0
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 1 {
+            presenter?.selectCell(index: indexPath.row)
+        }
+    }
 }
 
 // MARK: UITableViewDataSource

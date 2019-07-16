@@ -74,10 +74,9 @@ final class UserInfoViewPresenter: Presenter {
             .disposed(by: disposeBag)
     }
     
-    func resetResult() {
+    func selectCell(index: Int) {
         
-        self.articles = []
-        self.page = 1
+        wireframe?.showDetailView(articles[index])
     }
     
 }

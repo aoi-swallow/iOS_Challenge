@@ -25,4 +25,16 @@ struct UserInfoViewWireframe: Wireframe {
     // MARK: Private
     
     private weak var viewController: ViewController?
+    
+    
+    // MARK: Internal
+    
+    func showDetailView(_ item: ArticlesItemEntity) {
+        
+        let nextViewController = ArticleDetailViewBuilder.build()
+        nextViewController.presenter?.selectedItem = item
+        nextViewController.presenter?.itemID = item.id
+        nextViewController.presenter?.likesCount = item.likesCount
+        viewController?.navigationController?.pushViewController(nextViewController, animated: true)
+    }
 }
