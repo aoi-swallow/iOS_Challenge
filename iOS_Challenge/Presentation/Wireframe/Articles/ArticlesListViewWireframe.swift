@@ -26,4 +26,13 @@ struct ArticleListViewWireframe: Wireframe {
     
     private weak var viewController: ViewController?
     
+    
+    // MARK: Internal
+    
+    func showDetailView(_ item: ArticlesItemEntity) {
+        
+        let nextViewController = ArticleDetailViewBuilder.build()
+        nextViewController.presenter?.selectedItem = item
+        viewController?.navigationController?.pushViewController(nextViewController, animated: true)
+    }
 }

@@ -16,10 +16,28 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
+    /// Resource file `good_green.png`.
+    static let good_greenPng = Rswift.FileResource(bundle: R.hostingBundle, name: "good_green", pathExtension: "png")
+    /// Resource file `stock_green.png`.
+    static let stock_greenPng = Rswift.FileResource(bundle: R.hostingBundle, name: "stock_green", pathExtension: "png")
     /// Resource file `tag.png`.
     static let tagPng = Rswift.FileResource(bundle: R.hostingBundle, name: "tag", pathExtension: "png")
+    /// Resource file `tag_black.png`.
+    static let tag_blackPng = Rswift.FileResource(bundle: R.hostingBundle, name: "tag_black", pathExtension: "png")
+    
+    /// `bundle.url(forResource: "good_green", withExtension: "png")`
+    static func good_greenPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.good_greenPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "stock_green", withExtension: "png")`
+    static func stock_greenPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.stock_greenPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
     
     /// `bundle.url(forResource: "tag", withExtension: "png")`
     static func tagPng(_: Void = ()) -> Foundation.URL? {
@@ -27,26 +45,55 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
     
+    /// `bundle.url(forResource: "tag_black", withExtension: "png")`
+    static func tag_blackPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.tag_blackPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
+    /// Image `good_green`.
+    static let good_green = Rswift.ImageResource(bundle: R.hostingBundle, name: "good_green")
+    /// Image `stock_green`.
+    static let stock_green = Rswift.ImageResource(bundle: R.hostingBundle, name: "stock_green")
+    /// Image `tag_black`.
+    static let tag_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "tag_black")
     /// Image `tag`.
     static let tag = Rswift.ImageResource(bundle: R.hostingBundle, name: "tag")
+    
+    /// `UIImage(named: "good_green", bundle: ..., traitCollection: ...)`
+    static func good_green(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.good_green, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "stock_green", bundle: ..., traitCollection: ...)`
+    static func stock_green(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.stock_green, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "tag", bundle: ..., traitCollection: ...)`
     static func tag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.tag, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "tag_black", bundle: ..., traitCollection: ...)`
+    static func tag_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tag_black, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `ArticleOutlineCell`.
     static let articleOutlineCell = _R.nib._ArticleOutlineCell()
+    /// Nib `LikedUserCell`.
+    static let likedUserCell = _R.nib._LikedUserCell()
     /// Nib `LoadingCell`.
     static let loadingCell = _R.nib._LoadingCell()
     
@@ -54,6 +101,12 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.articleOutlineCell) instead")
     static func articleOutlineCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.articleOutlineCell)
+    }
+    
+    /// `UINib(name: "LikedUserCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.likedUserCell) instead")
+    static func likedUserCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.likedUserCell)
     }
     
     /// `UINib(name: "LoadingCell", in: bundle)`
@@ -66,6 +119,10 @@ struct R: Rswift.Validatable {
       return R.nib.articleOutlineCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ArticleOutlineCell
     }
     
+    static func likedUserCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LikedUserCell? {
+      return R.nib.likedUserCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LikedUserCell
+    }
+    
     static func loadingCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LoadingCell? {
       return R.nib.loadingCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LoadingCell
     }
@@ -73,10 +130,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `articleOutlineCell`.
     static let articleOutlineCell: Rswift.ReuseIdentifier<ArticleOutlineCell> = Rswift.ReuseIdentifier(identifier: "articleOutlineCell")
+    /// Reuse identifier `likedUserCell`.
+    static let likedUserCell: Rswift.ReuseIdentifier<LikedUserCell> = Rswift.ReuseIdentifier(identifier: "likedUserCell")
     /// Reuse identifier `loadingCell`.
     static let loadingCell: Rswift.ReuseIdentifier<LoadingCell> = Rswift.ReuseIdentifier(identifier: "loadingCell")
     
@@ -175,6 +234,20 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _LikedUserCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = LikedUserCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "likedUserCell"
+      let name = "LikedUserCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LikedUserCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LikedUserCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _LoadingCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = LoadingCell
       
@@ -205,10 +278,16 @@ struct _R: Rswift.Validatable {
     struct articles: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = ArticlesNavigationController
       
+      let articleDetailView = StoryboardViewControllerResource<ArticleDetailViewController>(identifier: "articleDetailView")
       let articlesListView = StoryboardViewControllerResource<ArticlesListViewController>(identifier: "articlesListView")
       let articlesNav = StoryboardViewControllerResource<ArticlesNavigationController>(identifier: "articlesNav")
       let bundle = R.hostingBundle
+      let likedUserView = StoryboardViewControllerResource<LikedUserViewController>(identifier: "likedUserView")
       let name = "Articles"
+      
+      func articleDetailView(_: Void = ()) -> ArticleDetailViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: articleDetailView)
+      }
       
       func articlesListView(_: Void = ()) -> ArticlesListViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: articlesListView)
@@ -218,11 +297,19 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: articlesNav)
       }
       
+      func likedUserView(_: Void = ()) -> LikedUserViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: likedUserView)
+      }
+      
       static func validate() throws {
+        if UIKit.UIImage(named: "good_green.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'good_green.png' is used in storyboard 'Articles', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "stock_green.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stock_green.png' is used in storyboard 'Articles', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.articles().articleDetailView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'articleDetailView' could not be loaded from storyboard 'Articles' as 'ArticleDetailViewController'.") }
         if _R.storyboard.articles().articlesListView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'articlesListView' could not be loaded from storyboard 'Articles' as 'ArticlesListViewController'.") }
         if _R.storyboard.articles().articlesNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'articlesNav' could not be loaded from storyboard 'Articles' as 'ArticlesNavigationController'.") }
+        if _R.storyboard.articles().likedUserView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'likedUserView' could not be loaded from storyboard 'Articles' as 'LikedUserViewController'.") }
       }
       
       fileprivate init() {}

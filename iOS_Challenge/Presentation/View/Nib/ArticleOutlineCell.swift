@@ -45,7 +45,7 @@ class ArticleOutlineCell: UITableViewCell {
         tagLabel.text = item.tags.joined(separator: ", ")
         iconImageView.sd_setImage(with: URL(string: item.userIconUrl)) { (image, error, cache, url) in
             if error != nil {
-                print(error)
+                print(error as Any)
             }
         }
     }

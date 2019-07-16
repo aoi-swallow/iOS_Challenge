@@ -12,6 +12,7 @@ import RxSwift
 protocol ArticlesUseCase {
     func newArrivalItemsGet(page: Int) -> Single<ArticlesItemListEntity>
     func searchItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
+    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
 }
 
 // MARK: - ArticlesUseCaseImpl
@@ -31,5 +32,10 @@ final class ArticlesUseCaseImpl: ArticlesUseCase {
     func searchItems(query: String, page: Int) -> Single<ArticlesItemListEntity> {
         
         return syncDataStore.getItems(query: query, page: page)
+    }
+    
+    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity> {
+        
+        return syncDataStore.getLikedUserList(itemID: itemID, likedCount: likedCount)
     }
 }

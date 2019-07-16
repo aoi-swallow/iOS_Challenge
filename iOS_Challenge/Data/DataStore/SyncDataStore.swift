@@ -17,6 +17,7 @@ protocol SyncDataStore {
     func getAuthorizedUserInfo() -> Single<Void>
     func getStockedItems() -> Single<Void>
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
+    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
 }
 
 // MARK: - SyncDataStoreImpl
@@ -84,6 +85,19 @@ final class SyncDataStoreImpl: SyncDataStore {
                     observer(.success(items))
                     return Disposables.create()
                 }
+            }
+        }
+    }
+    
+    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity> {
+        
+        let task = Api.shared.request(ApiService.LikedUsersGet(itemID: itemID))
+        return task.flatMap { response in
+            return Single.create { observer in
+                let json = JSON(response.data)
+                let items: LikedUserListEntity = LikedUserListEntity(json: json, count: likedCount)
+                observer(.success(items))
+                return Disposables.create()
             }
         }
     }

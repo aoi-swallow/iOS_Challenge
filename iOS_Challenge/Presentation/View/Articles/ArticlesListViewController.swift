@@ -94,6 +94,11 @@ extension ArticlesListViewController: UITableViewDelegate {
         
         return 120.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        presenter?.selectCell(index: indexPath.row)
+    }
 }
 
 // MARK: UITableViewDataStore
