@@ -1,26 +1,26 @@
 //
-//  ArticlesListViewBuilder.swift
+//  SearchResultViewBuilder.swift
 //  iOS_Challenge
 //
-//  Created by 大川葵 on 2019/07/14.
+//  Created by 大川葵 on 2019/07/17.
 //  Copyright © 2019 Aoi Okawa. All rights reserved.
 //
 
 import UIKit
 
-// MARK: ArticlesListViewBuilder
-struct ArticlesListViewBuilder: ViewControllerBuilder {
+// MARK: SearchResultViewBuilder
+struct SearchResultViewBuilder: ViewControllerBuilder {
     
-    typealias ViewController = ArticlesListViewController
+    typealias ViewController = SearchResultViewController
     
     
     // MARK: ViewControllerBuilder
     
-    static func build() -> ArticlesListViewController {
+    static func build() -> SearchResultViewController {
         
-        let viewController = R.storyboard.articles.articlesListView()
-        let presenter = ArticlesListViewPresenter(viewController!)
-        let wireframe = ArticleListViewWireframe(viewController!)
+        let viewController = R.storyboard.search.searchResultView()
+        let presenter = SearchResultViewPresenter(viewController!)
+        let wireframe = SearchResultViewWireframe(viewController!)
         
         let syncDaraStore: SyncDataStore = SyncDataStoreImpl()
         let queryDataStore: QueryDataStore = QueryDataStoreImpl()

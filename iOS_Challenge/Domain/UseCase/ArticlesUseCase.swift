@@ -21,15 +21,18 @@ protocol ArticlesUseCase {
     func putStock(itemID: String) -> Single<Response>
     func deleteStock(itemID: String) -> Single<Response>
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
+    func readTags() -> [TagDetailEntity]
 }
 
 // MARK: - ArticlesUseCaseImpl
 final class ArticlesUseCaseImpl: ArticlesUseCase {
     
     private let syncDataStore: SyncDataStore
+    private let queryDataStore: QueryDataStore
     
-    public init(_ syncDataStore: SyncDataStore) {
+    public init(syncDataStore: SyncDataStore, queryDataStore: QueryDataStore) {
         self.syncDataStore = syncDataStore
+        self.queryDataStore = queryDataStore
     }
     
     func newArrivalItemsGet(page: Int) -> Single<ArticlesItemListEntity> {
@@ -80,5 +83,11 @@ final class ArticlesUseCaseImpl: ArticlesUseCase {
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity> {
         
         return syncDataStore.getSingleItem(itemID: itemID)
+    }
+    
+    func readTags() -> [TagDetailEntity] {
+        
+        let tags = queryDataStore.readAll(TagDetailEntity.self)
+        return tags
     }
 }

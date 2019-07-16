@@ -26,6 +26,6 @@ final class SyncUseCaseImpl: SyncUseCase {
     func getLaunchData() -> Single<Void> {
         
         let task = syncDataStore.getAuthorizedUserInfo()
-        return task.flatMap { [unowned self] _ in self.syncDataStore.getStockedItems()}
+        return task
     }
 }
