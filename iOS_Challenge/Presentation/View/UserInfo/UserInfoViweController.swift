@@ -52,6 +52,12 @@ final class UserInfoViewController: UIViewController {
     // MARK: Internal
     
     var presenter: UserInfoViewPresenter?
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.tableView.contentOffset.y + self.tableView.frame.size.height > self.tableView.contentSize.height && self.tableView.isDragging){
+            self.presenter?.getUserItems()
+        }
+    }
 }
 
 // MARK: UITabeleViewDelegate
@@ -91,7 +97,13 @@ extension UserInfoViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return presenter?.articles.count ?? 0
+            var articles: [ArticlesItemEntity] = []
+            for item in presenter!.articles {
+                if item.title != "" {
+                    articles.append(item)
+                }
+            }
+            return articles.count
         default:
             return 0
         }
