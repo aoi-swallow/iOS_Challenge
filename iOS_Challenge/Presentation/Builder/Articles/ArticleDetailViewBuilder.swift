@@ -22,6 +22,9 @@ struct ArticleDetailViewBuilder: ViewControllerBuilder {
         let presenter = ArticleDetailViewPresenter(viewController!)
         let wireframe = ArticleDetailViewWireframe(viewController!)
         
+        let syncDataStore: SyncDataStore = SyncDataStoreImpl()
+        let articlesUseCase: ArticlesUseCase = ArticlesUseCaseImpl(syncDataStore)
+        presenter.articlesUseCase = articlesUseCase
         presenter.wireframe = wireframe
         
         viewController?.presenter = presenter

@@ -18,6 +18,13 @@ protocol SyncDataStore {
     func getStockedItems() -> Single<Void>
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
     func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
+    func checkLiked(itemID: String) -> Single<Response>
+    func putLike(itemID: String) -> Single<Response>
+    func deleteLike(itemID: String) -> Single<Response>
+    func checkStocked(itemID: String) -> Single<Response>
+    func putStock(itemID: String) -> Single<Response>
+    func deleteStock(itemID: String) -> Single<Response>
+    func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
 }
 
 // MARK: - SyncDataStoreImpl
@@ -38,7 +45,7 @@ final class SyncDataStoreImpl: SyncDataStore {
                     return Disposables.create()
                 }
                 try! self?.realm.write {
-                    self?.realm.add(userInfo!, update: .error)
+                    self?.realm.add(userInfo!, update: .all)
                 }
                 UserDefaults.Keys.Auth.userID.set(userInfo!.id)
                 print("UserData Persed")
@@ -98,6 +105,54 @@ final class SyncDataStoreImpl: SyncDataStore {
                 let items: LikedUserListEntity = LikedUserListEntity(json: json, count: likedCount)
                 observer(.success(items))
                 return Disposables.create()
+            }
+        }
+    }
+    
+    func checkLiked(itemID: String) -> Single<Response> {
+        
+        return Api.shared.request(ApiService.LikeCheck(itemID: itemID))
+    }
+    
+    func putLike(itemID: String) -> Single<Response> {
+        
+        return Api.shared.request(ApiService.LikePut(itemID: itemID))
+    }
+    
+    func deleteLike(itemID: String) -> Single<Response> {
+        
+        return Api.shared.request(ApiService.LikeDelete(itemID: itemID))
+    }
+    
+    func checkStocked(itemID: String) -> Single<Response> {
+        
+        return Api.shared.request(ApiService.StockCheck(itemID: itemID))
+    }
+    
+    func putStock(itemID: String) -> Single<Response> {
+        
+        return Api.shared.request(ApiService.StockItem(itemID: itemID))
+    }
+    
+    func deleteStock(itemID: String) -> Single<Response> {
+        
+        return Api.shared.request(ApiService.StockDelete(itemID: itemID))
+    }
+    
+    func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity> {
+        
+        let task = Api.shared.request(ApiService.ItemSingleGet(itemID: itemID))
+        return task.flatMap { response in
+            return Single.create { observer in
+                let json = JSON(response.data)
+                let item: ArticleSingleItemEntity = ArticleSingleItemEntity(json: json)
+                if item.body.isEmpty {
+                    observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
+                    return Disposables.create()
+                } else {
+                    observer(.success(item))
+                    return Disposables.create()
+                }
             }
         }
     }

@@ -45,7 +45,7 @@ final class ArticleDetailViewController: UIViewController {
         }
         let date = presenter?.selectedItem!.updatedAt.components(separatedBy: "T")[0]
         dateLabel.text = date
-        goodCountLabel.text = "いいね \(String(describing: (presenter?.selectedItem?.likesCount)!))"
+        goodCountLabel.text = "いいね \(String(describing: (presenter?.likesCount)!))"
         goodCountLabel.layer.cornerRadius = 5
         goodCountLabel.layer.masksToBounds = true
         let tap = UITapGestureRecognizer()
@@ -55,6 +55,47 @@ final class ArticleDetailViewController: UIViewController {
             })
         .disposed(by: disposeBag)
         goodCountLabel.addGestureRecognizer(tap)
+        
+        presenter?.checkLiked()
+        presenter?.checkStocked()
+        
+        goodButton.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.presenter?.tapGoodButton()
+            })
+        .disposed(by: disposeBag)
+        
+        stockButton.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.presenter?.tapStockButton()
+            })
+        .disposed(by: disposeBag)
+        
+        presenter?.likeIconToggle.asDriver()
+            .drive(onNext: { [weak self] isLiked in
+                if isLiked {
+                    self?.goodButton.setImage(R.image.liked_check(), for: .normal)
+                } else {
+                    self?.goodButton.setImage(R.image.good_green(), for: .normal)
+                }
+            })
+        .disposed(by: disposeBag)
+        
+        presenter?.stockIconToggle.asDriver()
+            .drive(onNext: { [weak self] isStocked in
+                if isStocked {
+                    self?.stockButton.setImage(R.image.stocked_check(), for: .normal)
+                } else {
+                    self?.stockButton.setImage(R.image.stock_green(), for: .normal)
+                }
+            })
+        .disposed(by: disposeBag)
+        
+        presenter?.refreshToggle.asSignal()
+            .emit(onNext: { [weak self] _ in
+                self?.goodCountLabel.text = "いいね \(String(describing: (self?.presenter?.likesCount)!))"
+            })
+        .disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {

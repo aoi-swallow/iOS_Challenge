@@ -33,6 +33,8 @@ struct ArticleListViewWireframe: Wireframe {
         
         let nextViewController = ArticleDetailViewBuilder.build()
         nextViewController.presenter?.selectedItem = item
+        nextViewController.presenter?.itemID = item.id
+        nextViewController.presenter?.likesCount = item.likesCount
         viewController?.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }

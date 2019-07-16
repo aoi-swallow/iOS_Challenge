@@ -16,12 +16,16 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.file` struct is generated, and contains static references to 4 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `good_green.png`.
     static let good_greenPng = Rswift.FileResource(bundle: R.hostingBundle, name: "good_green", pathExtension: "png")
+    /// Resource file `liked_check.png`.
+    static let liked_checkPng = Rswift.FileResource(bundle: R.hostingBundle, name: "liked_check", pathExtension: "png")
     /// Resource file `stock_green.png`.
     static let stock_greenPng = Rswift.FileResource(bundle: R.hostingBundle, name: "stock_green", pathExtension: "png")
+    /// Resource file `stocked_check.png`.
+    static let stocked_checkPng = Rswift.FileResource(bundle: R.hostingBundle, name: "stocked_check", pathExtension: "png")
     /// Resource file `tag.png`.
     static let tagPng = Rswift.FileResource(bundle: R.hostingBundle, name: "tag", pathExtension: "png")
     /// Resource file `tag_black.png`.
@@ -33,9 +37,21 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
     
+    /// `bundle.url(forResource: "liked_check", withExtension: "png")`
+    static func liked_checkPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.liked_checkPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     /// `bundle.url(forResource: "stock_green", withExtension: "png")`
     static func stock_greenPng(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.stock_greenPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "stocked_check", withExtension: "png")`
+    static func stocked_checkPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.stocked_checkPng
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -54,12 +70,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 6 images.
   struct image {
     /// Image `good_green`.
     static let good_green = Rswift.ImageResource(bundle: R.hostingBundle, name: "good_green")
+    /// Image `liked_check`.
+    static let liked_check = Rswift.ImageResource(bundle: R.hostingBundle, name: "liked_check")
     /// Image `stock_green`.
     static let stock_green = Rswift.ImageResource(bundle: R.hostingBundle, name: "stock_green")
+    /// Image `stocked_check`.
+    static let stocked_check = Rswift.ImageResource(bundle: R.hostingBundle, name: "stocked_check")
     /// Image `tag_black`.
     static let tag_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "tag_black")
     /// Image `tag`.
@@ -70,9 +90,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.good_green, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "liked_check", bundle: ..., traitCollection: ...)`
+    static func liked_check(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.liked_check, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "stock_green", bundle: ..., traitCollection: ...)`
     static func stock_green(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.stock_green, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "stocked_check", bundle: ..., traitCollection: ...)`
+    static func stocked_check(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.stocked_check, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "tag", bundle: ..., traitCollection: ...)`

@@ -84,9 +84,57 @@ enum ApiService {
         }
     }
     
+    // 記事単体取得
+    // - GET /api/v2/items/:item_id
+    struct ItemSingleGet: ApiServiceTargetType {
+        var itemID: String
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.singleItem(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
     // いいねユーザー一覧取得
-    // - CET /api/v2/items/:item_id/likes
+    // - GET /api/v2/items/:item_id/likes
     struct LikedUsersGet: ApiServiceTargetType {
+        var itemID: String
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.likeList(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // 記事にいいねをつける
+    // - PUT /api/v2/items/:item_id/like
+    struct LikePut: ApiServiceTargetType {
+        var itemID: String
+        
+        var method: Moya.Method { return .put }
+        var path: String { return URLConstants.AppURL.like(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // 記事のいいねを取り消す
+    // - DELETE /api/v2/items/:item_id/like
+    struct LikeDelete: ApiServiceTargetType {
+        var itemID: String
+        
+        var method: Moya.Method { return .delete }
+        var path: String { return URLConstants.AppURL.like(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // 記事のいいねを確認する
+    // - GET /api/v2/items/:item_id/like
+    struct LikeCheck: ApiServiceTargetType {
         var itemID: String
         
         var method: Moya.Method { return .get }
@@ -96,12 +144,36 @@ enum ApiService {
         }
     }
     
-    // 記事のストック
+    // 記事をストックする
     // - PUT /api/v2/items/:item_id/stock
     struct StockItem: ApiServiceTargetType {
         let itemID: String
         
         var method: Moya.Method { return .put }
+        var path: String { return URLConstants.AppURL.stock(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // 記事をストックから外す
+    // - DELETE /api/v2/items/:item_id/stock
+    struct StockDelete: ApiServiceTargetType {
+        let itemID: String
+        
+        var method: Moya.Method { return .delete }
+        var path: String { return URLConstants.AppURL.stock(itemID: itemID).path }
+        var task: Task {
+            return .requestPlain
+        }
+    }
+    
+    // 記事をストックする
+    // - GET /api/v2/items/:item_id/stock
+    struct StockCheck: ApiServiceTargetType {
+        let itemID: String
+        
+        var method: Moya.Method { return .get }
         var path: String { return URLConstants.AppURL.stock(itemID: itemID).path }
         var task: Task {
             return .requestPlain
