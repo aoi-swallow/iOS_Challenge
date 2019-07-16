@@ -46,3 +46,30 @@ class ArticlesItemListEntity {
     }
 }
 
+// MARK: - ArticleSingleItemEntity
+class ArticleSingleItemEntity {
+    
+    var title: String = ""
+    var id: String = ""
+    var updatedAt: String = ""
+    var likesCount: Int = 0
+    var body: String = ""
+    var tags: [String] = []
+    var userName: String = ""
+    var userIconUrl: String = ""
+    
+    required init(json: JSON) {
+        title = json["title"].stringValue
+        id = json["id"].stringValue
+        updatedAt = json["updated_at"].stringValue
+        likesCount = json["likes_count"].intValue
+        body = json["body"].stringValue
+        let tagArray = json["tags"].arrayValue
+        for tag in tagArray {
+            self.tags.append(tag["name"].stringValue)
+        }
+        userName = json["user"]["id"].stringValue
+        userIconUrl = json["user"]["profile_image_url"].stringValue
+    }
+}
+

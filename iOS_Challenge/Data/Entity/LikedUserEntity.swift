@@ -15,7 +15,18 @@ class LikedUserEntity {
     var userIcon: String = ""
     
     required init(json: JSON, index: Int) {
-        userName = json[index]["user"]["name"].stringValue
+        userName = json[index]["user"]["id"].stringValue
         userIcon = json[index]["user"]["profile_image_url"].stringValue
+    }
+}
+
+class LikedUserListEntity {
+    
+    var likedUsers: [LikedUserEntity] = []
+    
+    required init(json: JSON, count: Int) {
+        for i in 0..<count {
+            self.likedUsers.append(LikedUserEntity(json: json, index: i))
+        }
     }
 }

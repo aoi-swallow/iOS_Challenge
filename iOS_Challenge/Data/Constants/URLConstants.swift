@@ -46,6 +46,8 @@ struct URLConstants {
         case authorizedUser
         case stockedItem(userID: String)
         case items
+        case singleItem(itemID: String)
+        case likeList(itemID: String)
         case like(itemID: String)
         case stock(itemID: String)
         
@@ -56,7 +58,9 @@ struct URLConstants {
             case .authorizedUser: return "/api/v2/authenticated_user"
             case .stockedItem(let userID): return "/api/v2/users/\(userID)/stocks"
             case .items: return "/api/v2/items"
-            case .like(let itemID): return "/api/v2/items/\(itemID)/likes"
+            case .singleItem(let itemID): return "/api/v2/items/\(itemID)"
+            case .likeList(let itemID): return "/api/v2/items/\(itemID)/likes"
+            case .like(let itemID): return "/api/v2/items/\(itemID)/like"
             case .stock(let itemID): return "/api/v2/items/\(itemID)/stock"
             }
         }

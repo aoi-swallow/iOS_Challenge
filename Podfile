@@ -18,6 +18,7 @@ target 'iOS_Challenge' do
   pod 'JGProgressHUD'
   pod 'SwiftyJSON'
   pod 'SDWebImage'
+  pod "MarkdownView"
 
   target 'iOS_ChallengeTests' do
     inherit! :search_paths

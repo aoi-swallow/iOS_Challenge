@@ -17,6 +17,8 @@ final class ArticlesNavigationController: UINavigationController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        navigationBar.barTintColor = UIColor.IconColor.defaultGreen
     }
     
     override func didReceiveMemoryWarning() {

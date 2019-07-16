@@ -73,4 +73,9 @@ final class ArticlesListViewPresenter: Presenter {
         self.articles = []
         self.page = 1
     }
+    
+    func selectCell(index: Int) {
+        
+        wireframe?.showDetailView(articles[index])
+    }
 }

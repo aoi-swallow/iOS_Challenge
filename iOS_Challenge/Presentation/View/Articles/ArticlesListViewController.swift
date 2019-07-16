@@ -23,6 +23,8 @@ final class ArticlesListViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.navigationItem.title = "フィード"
+        
         self.tableView.register(R.nib.articleOutlineCell)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -91,6 +93,11 @@ extension ArticlesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 120.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        presenter?.selectCell(index: indexPath.row)
     }
 }
 
