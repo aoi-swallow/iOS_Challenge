@@ -48,4 +48,9 @@ final class AuthWebViewPresenter: Presenter {
                 }
         }.disposed(by: disposeBag)
     }
+    
+    func tapCloseButton() {
+        
+        wireframe?.dismiss()
+    }
 }

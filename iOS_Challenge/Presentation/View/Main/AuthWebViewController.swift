@@ -18,6 +18,9 @@ final class AuthWebViewController: UIViewController {
     
     // MARK: UIViewController
     
+    @IBOutlet weak var headerBar: UINavigationBar!
+    @IBOutlet weak var closeButton: UIBarButtonItem!
+    
     var wkWebView: WKWebView!
     
     override func viewDidLoad() {
@@ -25,20 +28,29 @@ final class AuthWebViewController: UIViewController {
         super.viewDidLoad()
         
         let webConfig = WKWebViewConfiguration()
-        wkWebView = WKWebView(frame: .zero, configuration: webConfig)
+        wkWebView = WKWebView(frame: CGRect(x: 0, y: 60, width:self.view.bounds.size.width, height:self.view.bounds.size.height - 65), configuration: webConfig)
         wkWebView.navigationDelegate = self
-        view = wkWebView
+        view.addSubview(wkWebView)
+        view.sendSubviewToBack(wkWebView)
         
         let url = URL(string: URLConstants.authURL)
         let request = URLRequest(url: url!)
         self.wkWebView.load(request)
+        
+        closeButton.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.presenter?.tapCloseButton()
+            })
+        .disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
     }
-    
+    @objc func done() {
+        print("done")
+    }
     
     // MARK: Private
     
@@ -55,20 +67,12 @@ extension AuthWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        /*  これを設定しないとアプリがクラッシュする
-         *  .allow  : 読み込み許可
-         *  .cancel : 読み込みキャンセル
-         */
         decisionHandler(.allow)
     }
  
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationResponse: WKNavigationResponse,
                  decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        /*  これを設定しないとアプリがクラッシュする
-         *  .allow  : 読み込み許可
-         *  .cancel : 読み込みキャンセル
-         */
         decisionHandler(.allow)
     }
     

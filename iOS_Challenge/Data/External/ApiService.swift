@@ -101,11 +101,12 @@ enum ApiService {
     // - GET /api/v2/items/:item_id/likes
     struct LikedUsersGet: ApiServiceTargetType {
         var itemID: String
+        var page: Int
         
         var method: Moya.Method { return .get }
         var path: String { return URLConstants.AppURL.likeList(itemID: itemID).path }
         var task: Task {
-            return .requestPlain
+            return .requestParameters(parameters: ["per_page": 10, "page": page], encoding: URLEncoding.default)
         }
     }
     

@@ -33,6 +33,7 @@ final class AuthDataStoreImpl: AuthDataStore {
                     return Disposables.create()
                 }
                 self?.keychain[AppKey.Keychain.token.rawValue] = resp?.token
+                UserDefaults.Keys.State.isLogin.set(true)
                 print("Login Success")
                 observer(.success(()))
                 return Disposables.create()

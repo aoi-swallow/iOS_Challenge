@@ -100,13 +100,7 @@ extension UserInfoViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            var articles: [ArticlesItemEntity] = []
-            for item in presenter!.articles {
-                if item.title != "" {
-                    articles.append(item)
-                }
-            }
-            return articles.count
+            return presenter?.articles.count ?? 0
         default:
             return 0
         }

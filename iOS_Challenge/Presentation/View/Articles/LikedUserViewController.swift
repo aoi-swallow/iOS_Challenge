@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import JGProgressHUD
 import RxCocoa
 import RxSwift
 
@@ -24,21 +23,18 @@ final class LikedUserViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.title = "いいねしているユーザー"
+        
         self.tableView.register(R.nib.likedUserCell)
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.register(R.nib.loadingCell)
+        let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
+        (footerCell as! LoadingCell).startAnimation()
+        let footerView: UIView = footerCell.contentView
+        tableView.tableFooterView = footerView
         
         presenter?.getLikedUserList()
-        
-        presenter?.hudToggle.asSignal()
-            .emit(onNext: { [weak self] show in
-                if show {
-                    self?.hud.show(in: self!.view)
-                } else {
-                    self?.hud.dismiss()
-                }
-            })
-        .disposed(by: disposeBag)
         
         presenter?.refreshToggle.asSignal()
             .emit(onNext: { [weak self] _ in
@@ -62,7 +58,6 @@ final class LikedUserViewController: UIViewController {
     // MARK: Private
     
     private let disposeBag = DisposeBag()
-    private let hud = JGProgressHUD(style: .light)
     
     private func showalert(title: String, message: String) {
         
@@ -76,6 +71,12 @@ final class LikedUserViewController: UIViewController {
     // MARK: Internal
     
     var presenter: LikedUserViewPresenter?
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.tableView.contentOffset.y + self.tableView.frame.size.height > self.tableView.contentSize.height && self.tableView.isDragging){
+            self.presenter?.getLikedUserList()
+        }
+    }
     
 }
 

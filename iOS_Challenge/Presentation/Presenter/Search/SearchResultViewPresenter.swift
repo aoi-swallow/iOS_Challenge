@@ -52,8 +52,14 @@ final class SearchResultViewPresenter: Presenter {
             .subscribe { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self?.articles.append(contentsOf: data.articles)
-                    if data.articles.count != 0 {
+                    var contents: [ArticlesItemEntity] = []
+                    for item in data.articles {
+                        if item.id != "" {
+                            contents.append(item)
+                        }
+                    }
+                    if !contents.isEmpty {
+                        self?.articles.append(contentsOf: contents)
                         self?.refreshToggle.accept(())
                         self?.page += 1
                         self?.loadStatus = .initial

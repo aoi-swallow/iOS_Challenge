@@ -19,10 +19,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="xfo-3t-kci">
-                                <rect key="frame" x="107" y="450" width="200" height="105"/>
+                                <rect key="frame" x="107" y="210" width="200" height="355"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchQ.png" translatesAutoresizingMaskIntoConstraints="NO" id="gQ4-DQ-RhM">
+                                        <rect key="frame" x="60" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="32M-cm-G29"/>
+                                            <constraint firstAttribute="width" constant="80" id="s0y-Gr-QcT"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fN8-fk-hbF">
+                                        <rect key="frame" x="0.0" y="105" width="200" height="120"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="IiW-6T-qOe"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHU-ni-TbQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                        <rect key="frame" x="0.0" y="250" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="48t-Mw-M3r"/>
                                             <constraint firstAttribute="height" constant="40" id="fcB-zR-ear"/>
@@ -33,7 +47,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-HN-xIX">
-                                        <rect key="frame" x="0.0" y="65" width="200" height="40"/>
+                                        <rect key="frame" x="0.0" y="315" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="GrT-Ps-Y0B"/>
                                             <constraint firstAttribute="height" constant="40" id="sZO-8m-4Iq"/>
@@ -50,8 +64,8 @@
                         <constraints>
                             <constraint firstItem="xfo-3t-kci" firstAttribute="leadingMargin" secondItem="SxA-sj-CxP" secondAttribute="leadingMargin" constant="87" id="MLp-0f-rU7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xfo-3t-kci" secondAttribute="trailing" constant="87" id="TiY-SG-QX9"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xfo-3t-kci" secondAttribute="bottom" constant="230" id="fnO-ut-8pd"/>
-                            <constraint firstItem="xfo-3t-kci" firstAttribute="top" secondItem="SxA-sj-CxP" secondAttribute="top" constant="450" id="y4w-IL-p8b"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xfo-3t-kci" secondAttribute="bottom" constant="120" id="fnO-ut-8pd"/>
+                            <constraint firstItem="xfo-3t-kci" firstAttribute="top" secondItem="SxA-sj-CxP" secondAttribute="top" constant="210" id="y4w-IL-p8b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gNC-ZV-tjc"/>
                     </view>
@@ -84,9 +98,35 @@
                     <view key="view" contentMode="scaleToFill" id="OR7-gi-UDk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2I-Kw-s4q">
+                                <rect key="frame" x="0.0" y="24" width="414" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="認証" id="U0i-GB-eeT">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="sUC-U3-EAi">
+                                            <color key="tintColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="u2I-Kw-s4q" firstAttribute="top" secondItem="OR7-gi-UDk" secondAttribute="top" constant="24" id="4YE-74-G7D"/>
+                            <constraint firstItem="u2I-Kw-s4q" firstAttribute="leading" secondItem="OR7-gi-UDk" secondAttribute="leadingMargin" constant="-20" id="Zzv-Ap-0tb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u2I-Kw-s4q" secondAttribute="trailing" constant="-20" id="pFk-nL-97j"/>
+                            <constraint firstItem="Tb1-Qg-sTs" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="u2I-Kw-s4q" secondAttribute="bottom" constant="700" id="sUT-Qg-sjb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Tb1-Qg-sTs"/>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="sUC-U3-EAi" id="Ngu-s6-58O"/>
+                        <outlet property="headerBar" destination="u2I-Kw-s4q" id="smP-rP-80v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5o-CW-p9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,4 +147,7 @@
             <point key="canvasLocation" x="-455" y="1051"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="searchQ.png" width="41.142856597900391" height="41.142856597900391"/>
+    </resources>
 </document>

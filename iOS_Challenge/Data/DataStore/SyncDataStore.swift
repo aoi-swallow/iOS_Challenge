@@ -17,7 +17,7 @@ protocol SyncDataStore {
     func getAuthorizedUserInfo() -> Single<Void>
     func getStockedItems(page: Int) -> Single<ArticlesItemListEntity>
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
-    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
+    func getLikedUserList(itemID: String, page: Int) -> Single<LikedUserListEntity>
     func checkLiked(itemID: String) -> Single<Response>
     func putLike(itemID: String) -> Single<Response>
     func deleteLike(itemID: String) -> Single<Response>
@@ -82,7 +82,7 @@ final class SyncDataStoreImpl: SyncDataStore {
             return Single.create { observer in
                 let json = JSON(response.data)
                 let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json, count: 10)
-                if items.articles.isEmpty {
+                if items.articles.isEmpty{
                     observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
                     return Disposables.create()
                 } else {
@@ -93,15 +93,20 @@ final class SyncDataStoreImpl: SyncDataStore {
         }
     }
     
-    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity> {
+    func getLikedUserList(itemID: String, page: Int) -> Single<LikedUserListEntity> {
         
-        let task = Api.shared.request(ApiService.LikedUsersGet(itemID: itemID))
+        let task = Api.shared.request(ApiService.LikedUsersGet(itemID: itemID, page: page))
         return task.flatMap { response in
             return Single.create { observer in
                 let json = JSON(response.data)
-                let items: LikedUserListEntity = LikedUserListEntity(json: json, count: likedCount)
-                observer(.success(items))
-                return Disposables.create()
+                let items: LikedUserListEntity = LikedUserListEntity(json: json, count: 10)
+                if items.likedUsers.isEmpty {
+                    observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
+                    return Disposables.create()
+                } else {
+                    observer(.success(items))
+                    return Disposables.create()
+                }
             }
         }
     }

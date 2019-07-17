@@ -33,4 +33,9 @@ struct AuthWebViewWireframe: Wireframe {
         let nextViewController = MainTabBarBuilder.build()
         self.viewController?.present(nextViewController, animated: true, completion: nil)
     }
+    
+    func dismiss() {
+        
+        self.viewController?.dismiss(animated: true, completion: nil)
+    }
 }
