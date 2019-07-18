@@ -20,6 +20,8 @@ final class LikedUserViewPresenter: Presenter {
     init(_ viewController: LikedUserViewController) {
         
         self.viewController = viewController
+        loadStatus = .initial
+        page = 1
     }
     
     
@@ -34,6 +36,8 @@ final class LikedUserViewPresenter: Presenter {
     var articlesUseCase: ArticlesUseCase?
     var likedCount: Int = 0
     var itemID: String = ""
+    var page: Int = 1
+    var loadStatus: LoadStatus?
     var likedUsers: [LikedUserEntity] = []
     private(set) var hudToggle = PublishRelay<Bool>()
     private(set) var refreshToggle = PublishRelay<Void>()
@@ -41,20 +45,38 @@ final class LikedUserViewPresenter: Presenter {
     
     func getLikedUserList() {
         
-        hudToggle.accept(true)
-        articlesUseCase?.getLikedUserList(itemID: itemID, likedCount: likedCount)
+        guard loadStatus == .initial else {
+            return
+        }
+        self.loadStatus = .fetching
+        self.refreshToggle.accept(())
+        self.articlesUseCase?.getLikedUserList(itemID: itemID, page: page)
             .subscribe { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self?.likedUsers = data.likedUsers
-                    self?.refreshToggle.accept(())
-                    self?.hudToggle.accept(false)
+                    var contents: [LikedUserEntity] = []
+                    for item in data.likedUsers {
+                        if item.userName != "" {
+                            contents.append(item)
+                        }
+                    }
+                    if contents.count == 10 {
+                        self?.likedUsers.append(contentsOf: contents)
+                        self?.page += 1
+                        self?.loadStatus = .initial
+                        self?.refreshToggle.accept(())
+                    } else {
+                        self?.likedUsers.append(contentsOf: contents)
+                        self?.loadStatus = .full
+                        self?.refreshToggle.accept(())
+                    }
                 case .error(let error):
                     print(error)
-                    self?.hudToggle.accept(false)
-                    self?.alertToggle.accept(("エラー", "データを取得できませんでした"))
+                    self?.alertToggle.accept(("Error", "データを取得できませんでした"))
+                    self?.loadStatus = .initial
+                    self?.refreshToggle.accept(())
                 }
             }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
 }

@@ -13,7 +13,7 @@ import RxSwift
 protocol ArticlesUseCase {
     func newArrivalItemsGet(page: Int) -> Single<ArticlesItemListEntity>
     func searchItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
-    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
+    func getLikedUserList(itemID: String, page: Int) -> Single<LikedUserListEntity>
     func checkLiked(itemID: String) -> Single<Response>
     func putLike(itemID: String) -> Single<Response>
     func deleteLike(itemID: String) -> Single<Response>
@@ -46,9 +46,9 @@ final class ArticlesUseCaseImpl: ArticlesUseCase {
         return syncDataStore.getItems(query: query, page: page)
     }
     
-    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity> {
+    func getLikedUserList(itemID: String, page: Int) -> Single<LikedUserListEntity> {
         
-        return syncDataStore.getLikedUserList(itemID: itemID, likedCount: likedCount)
+        return syncDataStore.getLikedUserList(itemID: itemID, page: page)
     }
     
     func checkLiked(itemID: String) -> Single<Response> {

@@ -29,10 +29,6 @@ final class SearchResultViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.rowHeight = 120
         self.tableView.register(R.nib.loadingCell)
-        let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
-        (footerCell as! LoadingCell).startAnimation()
-        let footerView: UIView = footerCell.contentView
-        tableView.tableFooterView = footerView
         
         presenter?.refreshToggle.asSignal()
             .emit(onNext: { [weak self] _ in
@@ -95,6 +91,15 @@ extension SearchResultViewController: UITableViewDelegate {
         
         presenter?.selectCell(index: indexPath.row)
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        if presenter?.loadStatus == LoadStatus.fetching {
+            return 60
+        } else {
+            return 0
+        }
+    }
 }
 
 // MARK: UITableViewDataStore
@@ -113,6 +118,19 @@ extension SearchResultViewController: UITableViewDataSource {
         } else {
             cell?.setItem((presenter?.articles[indexPath.row])!)
             return cell!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if presenter?.loadStatus == LoadStatus.fetching {
+            let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
+            (footerCell as! LoadingCell).startAnimation()
+            let footerView: UIView = footerCell.contentView
+            footerView.backgroundColor = .white
+            return footerView
+        } else {
+            return nil
         }
     }
 }

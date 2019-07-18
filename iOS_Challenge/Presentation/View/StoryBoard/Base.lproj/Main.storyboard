@@ -19,10 +19,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="xfo-3t-kci">
-                                <rect key="frame" x="107" y="450" width="200" height="105"/>
+                                <rect key="frame" x="107" y="210" width="200" height="355"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchQ.png" translatesAutoresizingMaskIntoConstraints="NO" id="gQ4-DQ-RhM">
+                                        <rect key="frame" x="60" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="32M-cm-G29"/>
+                                            <constraint firstAttribute="width" constant="80" id="s0y-Gr-QcT"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fN8-fk-hbF">
+                                        <rect key="frame" x="0.0" y="105" width="200" height="120"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="IiW-6T-qOe"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHU-ni-TbQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                        <rect key="frame" x="0.0" y="250" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="48t-Mw-M3r"/>
                                             <constraint firstAttribute="height" constant="40" id="fcB-zR-ear"/>
@@ -33,7 +47,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-HN-xIX">
-                                        <rect key="frame" x="0.0" y="65" width="200" height="40"/>
+                                        <rect key="frame" x="0.0" y="315" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="GrT-Ps-Y0B"/>
                                             <constraint firstAttribute="height" constant="40" id="sZO-8m-4Iq"/>
@@ -50,8 +64,8 @@
                         <constraints>
                             <constraint firstItem="xfo-3t-kci" firstAttribute="leadingMargin" secondItem="SxA-sj-CxP" secondAttribute="leadingMargin" constant="87" id="MLp-0f-rU7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xfo-3t-kci" secondAttribute="trailing" constant="87" id="TiY-SG-QX9"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xfo-3t-kci" secondAttribute="bottom" constant="230" id="fnO-ut-8pd"/>
-                            <constraint firstItem="xfo-3t-kci" firstAttribute="top" secondItem="SxA-sj-CxP" secondAttribute="top" constant="450" id="y4w-IL-p8b"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xfo-3t-kci" secondAttribute="bottom" constant="120" id="fnO-ut-8pd"/>
+                            <constraint firstItem="xfo-3t-kci" firstAttribute="top" secondItem="SxA-sj-CxP" secondAttribute="top" constant="210" id="y4w-IL-p8b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gNC-ZV-tjc"/>
                     </view>
@@ -106,5 +120,54 @@
             </objects>
             <point key="canvasLocation" x="-455" y="1051"/>
         </scene>
+        <!--メニュー-->
+        <scene sceneID="Hz5-mi-yje">
+            <objects>
+                <tableViewController storyboardIdentifier="sideMenuTableView" title="メニュー" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uGc-eU-Jbg" customClass="SideMenuTableViewController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pq0-23-22v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="OV7-1o-zbQ">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OV7-1o-zbQ" id="J8O-bW-HnN">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uGc-eU-Jbg" id="As9-XW-iUi"/>
+                            <outlet property="delegate" destination="uGc-eU-Jbg" id="ElP-qQ-IAi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="PpV-eQ-xxB"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gLU-oT-o2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1404" y="1071"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="q0C-AS-3UD">
+            <objects>
+                <navigationController storyboardIdentifier="sideMenuNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ccy-jN-Th8" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l4I-dx-g3A">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zIf-9n-kLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="1059"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="searchQ.png" width="41.142856597900391" height="41.142856597900391"/>
+    </resources>
 </document>

@@ -14,7 +14,7 @@
         <scene sceneID="A5j-7W-rmd">
             <objects>
                 <navigationController storyboardIdentifier="stockNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zhe-zG-Sot" customClass="StockNavigationBarController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ストック" id="u40-9B-VWG">
+                    <tabBarItem key="tabBarItem" title="ストック" image="s_folder.png" id="u40-9B-VWG">
                         <color key="badgeColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -58,4 +58,7 @@
             <point key="canvasLocation" x="-304.34782608695656" y="171.42857142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="s_folder.png" width="30" height="30"/>
+    </resources>
 </document>

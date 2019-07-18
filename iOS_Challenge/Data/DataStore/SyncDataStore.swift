@@ -17,7 +17,7 @@ protocol SyncDataStore {
     func getAuthorizedUserInfo() -> Single<Void>
     func getStockedItems(page: Int) -> Single<ArticlesItemListEntity>
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity>
-    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity>
+    func getLikedUserList(itemID: String, page: Int) -> Single<LikedUserListEntity>
     func checkLiked(itemID: String) -> Single<Response>
     func putLike(itemID: String) -> Single<Response>
     func deleteLike(itemID: String) -> Single<Response>
@@ -27,6 +27,7 @@ protocol SyncDataStore {
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
     func getAuthorizedUsersItems(page: Int) -> Single<ArticlesItemListEntity>
     func getFollowingTags() -> Single<Void>
+    func deleteData() -> Single<Void>
 }
 
 // MARK: - SyncDataStoreImpl
@@ -77,12 +78,20 @@ final class SyncDataStoreImpl: SyncDataStore {
     
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity> {
         
-        let task = Api.shared.request(ApiService.ItemsGet(query: query, page: page))
-        return task.flatMap { response in
+        
+        var task: Single<Response>?
+        let isLogin = UserDefaults.Keys.State.isLogin.value()
+        if isLogin {
+            task = Api.shared.request(ApiService.ItemsGetAuthorized(query: query, page: page))
+        } else {
+            task = Api.shared.request(ApiService.ItemsGet(query: query, page: page))
+        }
+        
+        return task!.flatMap { response in
             return Single.create { observer in
                 let json = JSON(response.data)
                 let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json, count: 10)
-                if items.articles.isEmpty {
+                if items.articles.isEmpty{
                     observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
                     return Disposables.create()
                 } else {
@@ -93,15 +102,20 @@ final class SyncDataStoreImpl: SyncDataStore {
         }
     }
     
-    func getLikedUserList(itemID: String, likedCount: Int) -> Single<LikedUserListEntity> {
+    func getLikedUserList(itemID: String, page: Int) -> Single<LikedUserListEntity> {
         
-        let task = Api.shared.request(ApiService.LikedUsersGet(itemID: itemID))
+        let task = Api.shared.request(ApiService.LikedUsersGet(itemID: itemID, page: page))
         return task.flatMap { response in
             return Single.create { observer in
                 let json = JSON(response.data)
-                let items: LikedUserListEntity = LikedUserListEntity(json: json, count: likedCount)
-                observer(.success(items))
-                return Disposables.create()
+                let items: LikedUserListEntity = LikedUserListEntity(json: json, count: 10)
+                if items.likedUsers.isEmpty {
+                    observer(.error(NSError(domain: "elements has no data.", code: -1, userInfo: nil)))
+                    return Disposables.create()
+                } else {
+                    observer(.success(items))
+                    return Disposables.create()
+                }
             }
         }
     }
@@ -191,6 +205,22 @@ final class SyncDataStoreImpl: SyncDataStore {
                 observer(.success(()))
                 return Disposables.create()
             }
+        }
+    }
+    
+    func deleteData() -> Single<Void> {
+        
+        return Single.create { [weak self] observer in
+            do {
+                try self?.realm.write {
+                    self?.realm.delete(self!.realm.objects(AuthorizedUserEntity.self))
+                }
+            } catch {
+                observer(.error(error))
+                return Disposables.create()
+            }
+            observer(.success(()))
+            return Disposables.create()
         }
     }
 }

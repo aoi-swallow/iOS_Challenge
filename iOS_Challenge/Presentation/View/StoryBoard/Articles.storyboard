@@ -14,7 +14,7 @@
         <scene sceneID="Ua2-S4-mRD">
             <objects>
                 <navigationController storyboardIdentifier="articlesNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="59A-Wo-oME" customClass="ArticlesNavigationController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="フィード" id="NiD-V6-hYe">
+                    <tabBarItem key="tabBarItem" title="フィード" image="s_feed.png" id="NiD-V6-hYe">
                         <color key="badgeColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -204,6 +204,7 @@
     </scenes>
     <resources>
         <image name="good_green.png" width="60" height="60"/>
+        <image name="s_feed.png" width="30" height="30"/>
         <image name="stock_green.png" width="60" height="60"/>
     </resources>
 </document>

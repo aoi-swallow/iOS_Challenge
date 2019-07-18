@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import JGProgressHUD
 import RxCocoa
 import RxSwift
 
@@ -24,21 +23,14 @@ final class LikedUserViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.title = "いいねしているユーザー"
+        
         self.tableView.register(R.nib.likedUserCell)
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.register(R.nib.loadingCell)
         
         presenter?.getLikedUserList()
-        
-        presenter?.hudToggle.asSignal()
-            .emit(onNext: { [weak self] show in
-                if show {
-                    self?.hud.show(in: self!.view)
-                } else {
-                    self?.hud.dismiss()
-                }
-            })
-        .disposed(by: disposeBag)
         
         presenter?.refreshToggle.asSignal()
             .emit(onNext: { [weak self] _ in
@@ -62,7 +54,6 @@ final class LikedUserViewController: UIViewController {
     // MARK: Private
     
     private let disposeBag = DisposeBag()
-    private let hud = JGProgressHUD(style: .light)
     
     private func showalert(title: String, message: String) {
         
@@ -77,6 +68,12 @@ final class LikedUserViewController: UIViewController {
     
     var presenter: LikedUserViewPresenter?
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.tableView.contentOffset.y + self.tableView.frame.size.height > self.tableView.contentSize.height && self.tableView.isDragging){
+            self.presenter?.getLikedUserList()
+        }
+    }
+    
 }
 
 // MARK: UITableViewDelegate
@@ -85,6 +82,15 @@ extension LikedUserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        if presenter?.loadStatus == LoadStatus.fetching {
+            return 60
+        } else {
+            return 0
+        }
     }
 }
 
@@ -103,5 +109,18 @@ extension LikedUserViewController: UITableViewDataSource {
          cell?.setItem((presenter?.likedUsers[indexPath.row])!)
         }
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if presenter?.loadStatus == LoadStatus.fetching {
+            let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
+            (footerCell as! LoadingCell).startAnimation()
+            let footerView: UIView = footerCell.contentView
+            footerView.backgroundColor = .white
+            return footerView
+        } else {
+            return nil
+        }
     }
 }

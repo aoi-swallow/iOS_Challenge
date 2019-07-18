@@ -7,16 +7,19 @@
 //
 
 import RxSwift
+import KeychainAccess
 
 // MARK: - SyncUseCase
 protocol SyncUseCase {
     func getLaunchData() -> Single<Void>
+    func logout() -> Single<Void>
 }
 
 // MARK: - SyncUseCaseImpl
 final class SyncUseCaseImpl: SyncUseCase {
     
     private let syncDataStore: SyncDataStore
+    private let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
     
     public init(_ syncDataStore: SyncDataStore) {
         
@@ -27,5 +30,13 @@ final class SyncUseCaseImpl: SyncUseCase {
         
         let task = syncDataStore.getAuthorizedUserInfo()
         return task
+    }
+    
+    func logout() -> Single<Void> {
+        UserDefaults.Keys.State.isLogin.set(false)
+        UserDefaults.Keys.Auth.userID.set("")
+        self.keychain[AppKey.Keychain.token.rawValue] = ""
+        
+        return syncDataStore.deleteData()
     }
 }

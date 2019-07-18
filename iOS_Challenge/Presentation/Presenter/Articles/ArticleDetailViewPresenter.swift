@@ -41,6 +41,7 @@ final class ArticleDetailViewPresenter: Presenter {
     private(set) var likeIconToggle = BehaviorRelay<Bool>(value: false)
     private(set) var stockIconToggle = BehaviorRelay<Bool>(value: false)
     private(set) var refreshToggle = PublishRelay<Void>()
+    private(set) var alertToggle = PublishRelay<Void>()
     
     private func refreshArticleData() {
         
@@ -54,6 +55,63 @@ final class ArticleDetailViewPresenter: Presenter {
                     print(error)
                 }
         }.disposed(by: disposeBag)
+    }
+    
+    private func syncLike() {
+        
+        if isLiked {
+            articlesUseCase?.deleteLike(itemID: itemID)
+                .subscribe { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        self?.isLiked = false
+                        self?.refreshArticleData()
+                        self?.likeIconToggle.accept(false)
+                    case .error(let error):
+                        print(error)
+                    }
+                }.disposed(by: disposeBag)
+        } else {
+            articlesUseCase?.putLike(itemID: itemID)
+                .subscribe { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        self?.isLiked = true
+                        self?.refreshArticleData()
+                        self?.likeIconToggle.accept(true)
+                    case .error(let error):
+                        print(error)
+                        
+                    }
+                }.disposed(by: disposeBag)
+        }
+    }
+    
+    private func syncStock() {
+        
+        if isStocked {
+            articlesUseCase?.deleteStock(itemID: itemID)
+                .subscribe { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        self?.isStocked = false
+                        self?.stockIconToggle.accept(false)
+                    case .error(let error):
+                        print(error)
+                    }
+                }.disposed(by: disposeBag)
+        } else {
+            articlesUseCase?.putStock(itemID: itemID)
+                .subscribe { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        self?.isStocked = true
+                        self?.stockIconToggle.accept(true)
+                    case .error(let error):
+                        print(error)
+                    }
+                }.disposed(by: disposeBag)
+        }
     }
     
     func checkLiked() {
@@ -93,58 +151,27 @@ final class ArticleDetailViewPresenter: Presenter {
     
     func tapGoodButton() {
         
-        if isLiked {
-            articlesUseCase?.deleteLike(itemID: itemID)
-                .subscribe { [weak self] result in
-                    switch result {
-                    case .success(_):
-                        self?.isLiked = false
-                        self?.refreshArticleData()
-                        self?.likeIconToggle.accept(false)
-                    case .error(let error):
-                        print(error)
-                    }
-            }.disposed(by: disposeBag)
+        let isLogin = UserDefaults.Keys.State.isLogin.value()
+        if isLogin {
+            self.syncLike()
         } else {
-            articlesUseCase?.putLike(itemID: itemID)
-                .subscribe { [weak self] result in
-                    switch result {
-                    case .success(_):
-                        self?.isLiked = true
-                        self?.refreshArticleData()
-                        self?.likeIconToggle.accept(true)
-                    case .error(let error):
-                        print(error)
-                        
-                    }
-            }.disposed(by: disposeBag)
+            alertToggle.accept(())
         }
+        
+
     }
     
     func tapStockButton() {
         
-        if isStocked {
-            articlesUseCase?.deleteStock(itemID: itemID)
-                .subscribe { [weak self] result in
-                    switch result {
-                    case .success(_):
-                        self?.isStocked = false
-                        self?.stockIconToggle.accept(false)
-                    case .error(let error):
-                        print(error)
-                    }
-            }.disposed(by: disposeBag)
+        let isLogin = UserDefaults.Keys.State.isLogin.value()
+        if isLogin {
+            self.syncStock()
         } else {
-            articlesUseCase?.putStock(itemID: itemID)
-                .subscribe { [weak self] result in
-                    switch result {
-                    case .success(_):
-                        self?.isStocked = true
-                        self?.stockIconToggle.accept(true)
-                    case .error(let error):
-                        print(error)
-                    }
-            }.disposed(by: disposeBag)
+            alertToggle.accept(())
         }
+    }
+    
+    func tapLoginButton() {
+        
     }
 }

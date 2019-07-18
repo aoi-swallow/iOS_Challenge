@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 // MARK: - UserInfoViewWireframe
 struct UserInfoViewWireframe: Wireframe {
@@ -36,5 +37,19 @@ struct UserInfoViewWireframe: Wireframe {
         nextViewController.presenter?.itemID = item.id
         nextViewController.presenter?.likesCount = item.likesCount
         viewController?.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
+    func showAuthWebView() {
+        
+        let nextViewController = AuthWebViewBuilder.build()
+        self.viewController?.present(nextViewController, animated: true, completion: nil)
+    }
+    
+    func showSideMenu() {
+        
+        SideMenuManager.default.menuLeftNavigationController = SideMenuTableViewNavBuilder.build()
+        SideMenuManager.default.menuPresentMode = SideMenuManager.MenuPresentMode.menuSlideIn
+        viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        SideMenuManager.default.menuLeftNavigationController?.sideMenuDelegate = viewController as? UISideMenuNavigationControllerDelegate
     }
 }

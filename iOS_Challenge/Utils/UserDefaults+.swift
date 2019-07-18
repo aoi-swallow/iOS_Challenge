@@ -112,6 +112,10 @@ extension UserDefaults.Keys {
         public static let userID = UserDefaults.Key<String>("auth.userID", defaultValue: "")
     }
     
+    public struct State {
+        public static let isLogin = UserDefaults.Key<Bool>("state.login", defaultValue: false)
+    }
+    
     public struct Search {
         public static var histories = UserDefaults.Key<[String]>("search.histories", defaultValue: [])
     }

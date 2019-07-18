@@ -17,28 +17,41 @@ final class AuthWebViewController: UIViewController {
     
     
     // MARK: UIViewController
-    
+
     var wkWebView: WKWebView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        self.navigationItem.title = "認証"
+        self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
+        
+        let closeButton = UIBarButtonItem.init(barButtonSystemItem: .stop, target: self, action: nil)
+        closeButton.rx.tap
+            .subscribe { [weak self] _ in self?.presenter?.tapCloseButton() }
+            .disposed(by: disposeBag)
+        self.navigationItem.leftBarButtonItem = closeButton
+        self.navigationItem.leftBarButtonItem?.tintColor = .white
+        
         let webConfig = WKWebViewConfiguration()
-        wkWebView = WKWebView(frame: .zero, configuration: webConfig)
+        wkWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), configuration: webConfig)
         wkWebView.navigationDelegate = self
-        view = wkWebView
+        view.addSubview(wkWebView)
         
         let url = URL(string: URLConstants.authURL)
         let request = URLRequest(url: url!)
         self.wkWebView.load(request)
+  
     }
     
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
     }
-    
+    @objc func done() {
+        print("done")
+    }
     
     // MARK: Private
     
@@ -55,20 +68,12 @@ extension AuthWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        /*  これを設定しないとアプリがクラッシュする
-         *  .allow  : 読み込み許可
-         *  .cancel : 読み込みキャンセル
-         */
         decisionHandler(.allow)
     }
  
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationResponse: WKNavigationResponse,
                  decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        /*  これを設定しないとアプリがクラッシュする
-         *  .allow  : 読み込み許可
-         *  .cancel : 読み込みキャンセル
-         */
         decisionHandler(.allow)
     }
     
