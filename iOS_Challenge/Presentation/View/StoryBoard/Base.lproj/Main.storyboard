@@ -98,35 +98,9 @@
                     <view key="view" contentMode="scaleToFill" id="OR7-gi-UDk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2I-Kw-s4q">
-                                <rect key="frame" x="0.0" y="24" width="414" height="44"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="認証" id="U0i-GB-eeT">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="sUC-U3-EAi">
-                                            <color key="tintColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="u2I-Kw-s4q" firstAttribute="top" secondItem="OR7-gi-UDk" secondAttribute="top" constant="24" id="4YE-74-G7D"/>
-                            <constraint firstItem="u2I-Kw-s4q" firstAttribute="leading" secondItem="OR7-gi-UDk" secondAttribute="leadingMargin" constant="-20" id="Zzv-Ap-0tb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="u2I-Kw-s4q" secondAttribute="trailing" constant="-20" id="pFk-nL-97j"/>
-                            <constraint firstItem="Tb1-Qg-sTs" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="u2I-Kw-s4q" secondAttribute="bottom" constant="700" id="sUT-Qg-sjb"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Tb1-Qg-sTs"/>
                     </view>
-                    <connections>
-                        <outlet property="closeButton" destination="sUC-U3-EAi" id="Ngu-s6-58O"/>
-                        <outlet property="headerBar" destination="u2I-Kw-s4q" id="smP-rP-80v"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5o-CW-p9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

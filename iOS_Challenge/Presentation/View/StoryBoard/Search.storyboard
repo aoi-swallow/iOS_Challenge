@@ -14,7 +14,7 @@
         <scene sceneID="8cC-jm-4B9">
             <objects>
                 <navigationController storyboardIdentifier="searchNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XID-vS-zuX" customClass="SearchNavigationBarController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="検索" id="NXC-Wa-Cgw">
+                    <tabBarItem key="tabBarItem" title="検索" image="s_search.png" id="NXC-Wa-Cgw">
                         <color key="badgeColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -122,4 +122,7 @@
             <point key="canvasLocation" x="837.68115942028987" y="167.41071428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="s_search.png" width="30" height="30"/>
+    </resources>
 </document>

@@ -26,12 +26,12 @@ final class UserInfoViewController: UIViewController {
         self.navigationItem.title = "ユーザー情報"
         self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
         
-        let hamburgerButton = UIBarButtonItem.init(image: R.image.good_green(), style: .plain, target: self, action: nil)
+        let hamburgerButton = UIBarButtonItem.init(image: R.image.s_hamburger(), style: .plain, target: self, action: nil)
         hamburgerButton.rx.tap
             .subscribe { [weak self] _ in self?.presenter?.tapHamburgerButton() }
             .disposed(by: disposeBag)
         self.navigationItem.leftBarButtonItem = hamburgerButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.IconColor.defaultGreen
+        self.navigationItem.leftBarButtonItem?.tintColor = .white
         
         self.tableView.register(R.nib.userOutlineCell)
         self.tableView.register(R.nib.articleOutlineCell)

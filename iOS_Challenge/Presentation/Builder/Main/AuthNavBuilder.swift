@@ -19,10 +19,10 @@ struct AuthNavBuilder: ViewControllerBuilder {
     static func build() -> AuthNavigationBarController {
         
         let navigationController = R.storyboard.main.authNav()
-//        let viewController = R.storyboard.main.authWebView()
+        let viewController = AuthWebViewBuilder.build()
         
         navigationController?.viewControllers = []
-//        navigationController?.viewControllers.append(viewController!)
+        navigationController?.viewControllers.append(viewController)
         
         return navigationController!
     }

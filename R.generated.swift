@@ -17,7 +17,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.file` struct is generated, and contains static references to 8 files.
+  /// This `R.file` struct is generated, and contains static references to 13 files.
   struct file {
     /// Resource file `Q_white.png`.
     static let q_whitePng = Rswift.FileResource(bundle: R.hostingBundle, name: "Q_white", pathExtension: "png")
@@ -25,6 +25,16 @@ struct R: Rswift.Validatable {
     static let good_greenPng = Rswift.FileResource(bundle: R.hostingBundle, name: "good_green", pathExtension: "png")
     /// Resource file `liked_check.png`.
     static let liked_checkPng = Rswift.FileResource(bundle: R.hostingBundle, name: "liked_check", pathExtension: "png")
+    /// Resource file `s_feed.png`.
+    static let s_feedPng = Rswift.FileResource(bundle: R.hostingBundle, name: "s_feed", pathExtension: "png")
+    /// Resource file `s_folder.png`.
+    static let s_folderPng = Rswift.FileResource(bundle: R.hostingBundle, name: "s_folder", pathExtension: "png")
+    /// Resource file `s_hamburger.png`.
+    static let s_hamburgerPng = Rswift.FileResource(bundle: R.hostingBundle, name: "s_hamburger", pathExtension: "png")
+    /// Resource file `s_search.png`.
+    static let s_searchPng = Rswift.FileResource(bundle: R.hostingBundle, name: "s_search", pathExtension: "png")
+    /// Resource file `s_user.png`.
+    static let s_userPng = Rswift.FileResource(bundle: R.hostingBundle, name: "s_user", pathExtension: "png")
     /// Resource file `searchQ.png`.
     static let searchQPng = Rswift.FileResource(bundle: R.hostingBundle, name: "searchQ", pathExtension: "png")
     /// Resource file `stock_green.png`.
@@ -51,6 +61,36 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "liked_check", withExtension: "png")`
     static func liked_checkPng(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.liked_checkPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "s_feed", withExtension: "png")`
+    static func s_feedPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.s_feedPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "s_folder", withExtension: "png")`
+    static func s_folderPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.s_folderPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "s_hamburger", withExtension: "png")`
+    static func s_hamburgerPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.s_hamburgerPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "s_search", withExtension: "png")`
+    static func s_searchPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.s_searchPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "s_user", withExtension: "png")`
+    static func s_userPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.s_userPng
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -87,7 +127,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
     /// Image `Q_white`.
     static let q_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "Q_white")
@@ -95,6 +135,16 @@ struct R: Rswift.Validatable {
     static let good_green = Rswift.ImageResource(bundle: R.hostingBundle, name: "good_green")
     /// Image `liked_check`.
     static let liked_check = Rswift.ImageResource(bundle: R.hostingBundle, name: "liked_check")
+    /// Image `s_feed`.
+    static let s_feed = Rswift.ImageResource(bundle: R.hostingBundle, name: "s_feed")
+    /// Image `s_folder`.
+    static let s_folder = Rswift.ImageResource(bundle: R.hostingBundle, name: "s_folder")
+    /// Image `s_hamburger`.
+    static let s_hamburger = Rswift.ImageResource(bundle: R.hostingBundle, name: "s_hamburger")
+    /// Image `s_search`.
+    static let s_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "s_search")
+    /// Image `s_user`.
+    static let s_user = Rswift.ImageResource(bundle: R.hostingBundle, name: "s_user")
     /// Image `searchQ`.
     static let searchQ = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchQ")
     /// Image `stock_green`.
@@ -119,6 +169,31 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "liked_check", bundle: ..., traitCollection: ...)`
     static func liked_check(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.liked_check, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "s_feed", bundle: ..., traitCollection: ...)`
+    static func s_feed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.s_feed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "s_folder", bundle: ..., traitCollection: ...)`
+    static func s_folder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.s_folder, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "s_hamburger", bundle: ..., traitCollection: ...)`
+    static func s_hamburger(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.s_hamburger, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "s_search", bundle: ..., traitCollection: ...)`
+    static func s_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.s_search, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "s_user", bundle: ..., traitCollection: ...)`
+    static func s_user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.s_user, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "searchQ", bundle: ..., traitCollection: ...)`
@@ -396,6 +471,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "good_green.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'good_green.png' is used in storyboard 'Articles', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "s_feed.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 's_feed.png' is used in storyboard 'Articles', but couldn't be loaded.") }
         if UIKit.UIImage(named: "stock_green.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stock_green.png' is used in storyboard 'Articles', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
@@ -496,6 +572,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "s_search.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 's_search.png' is used in storyboard 'Search', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.search().searchNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchNav' could not be loaded from storyboard 'Search' as 'SearchNavigationBarController'.") }
@@ -523,6 +600,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "s_folder.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 's_folder.png' is used in storyboard 'Stock', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.stock().stockArticlesView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'stockArticlesView' could not be loaded from storyboard 'Stock' as 'StockArticlesViewController'.") }
@@ -549,6 +627,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "s_user.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 's_user.png' is used in storyboard 'UserInfo', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.userInfo().userInfoNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'userInfoNav' could not be loaded from storyboard 'UserInfo' as 'UserInfoNavigationBarController'.") }

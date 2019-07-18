@@ -17,31 +17,32 @@ final class AuthWebViewController: UIViewController {
     
     
     // MARK: UIViewController
-    
-    @IBOutlet weak var headerBar: UINavigationBar!
-    @IBOutlet weak var closeButton: UIBarButtonItem!
-    
+
     var wkWebView: WKWebView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        self.navigationItem.title = "認証"
+        self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
+        
+        let closeButton = UIBarButtonItem.init(barButtonSystemItem: .stop, target: self, action: nil)
+        closeButton.rx.tap
+            .subscribe { [weak self] _ in self?.presenter?.tapCloseButton() }
+            .disposed(by: disposeBag)
+        self.navigationItem.leftBarButtonItem = closeButton
+        self.navigationItem.leftBarButtonItem?.tintColor = .white
+        
         let webConfig = WKWebViewConfiguration()
-        wkWebView = WKWebView(frame: CGRect(x: 0, y: 60, width:self.view.bounds.size.width, height:self.view.bounds.size.height - 65), configuration: webConfig)
+        wkWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), configuration: webConfig)
         wkWebView.navigationDelegate = self
         view.addSubview(wkWebView)
-        view.sendSubviewToBack(wkWebView)
         
         let url = URL(string: URLConstants.authURL)
         let request = URLRequest(url: url!)
         self.wkWebView.load(request)
-        
-        closeButton.rx.tap.asObservable()
-            .subscribe(onNext: { [weak self] _ in
-                self?.presenter?.tapCloseButton()
-            })
-        .disposed(by: disposeBag)
+  
     }
     
     override func didReceiveMemoryWarning() {

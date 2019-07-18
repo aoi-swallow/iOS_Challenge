@@ -14,7 +14,7 @@
         <scene sceneID="oZy-40-RQ1">
             <objects>
                 <navigationController storyboardIdentifier="userInfoNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0qZ-jr-WaK" customClass="UserInfoNavigationBarController" customModule="iOS_Challenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ユーザー" id="nZo-Kw-yDP">
+                    <tabBarItem key="tabBarItem" title="ユーザー" image="s_user.png" id="nZo-Kw-yDP">
                         <color key="badgeColor" red="0.33333333329999998" green="0.7725490196" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -58,4 +58,7 @@
             <point key="canvasLocation" x="418.84057971014494" y="124.55357142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="s_user.png" width="30" height="30"/>
+    </resources>
 </document>

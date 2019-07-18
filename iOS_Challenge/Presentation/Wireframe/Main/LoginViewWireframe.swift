@@ -40,7 +40,7 @@ struct LoginViewWireframe: Wireframe {
     
     private func showAuthWebView() {
         
-        let nextViewController = AuthWebViewBuilder.build()
+        let nextViewController = AuthNavBuilder.build()
         self.viewController?.present(nextViewController, animated: true, completion: nil)
     }
     
