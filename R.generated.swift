@@ -5,6 +5,7 @@
 
 import Foundation
 import Rswift
+import SideMenu
 import UIKit
 
 /// This `R` struct is generated and contains references to static resources.
@@ -202,10 +203,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 6 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `articleOutlineCell`.
     static let articleOutlineCell: Rswift.ReuseIdentifier<ArticleOutlineCell> = Rswift.ReuseIdentifier(identifier: "articleOutlineCell")
+    /// Reuse identifier `cell`.
+    static let cell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "cell")
     /// Reuse identifier `likedUserCell`.
     static let likedUserCell: Rswift.ReuseIdentifier<LikedUserCell> = Rswift.ReuseIdentifier(identifier: "likedUserCell")
     /// Reuse identifier `loadingCell`.
@@ -429,6 +432,8 @@ struct _R: Rswift.Validatable {
       let loginView = StoryboardViewControllerResource<LoginViewController>(identifier: "loginView")
       let mainTabBar = StoryboardViewControllerResource<MainTabBarController>(identifier: "mainTabBar")
       let name = "Main"
+      let sideMenuNav = StoryboardViewControllerResource<SideMenu.UISideMenuNavigationController>(identifier: "sideMenuNav")
+      let sideMenuTableView = StoryboardViewControllerResource<SideMenuTableViewController>(identifier: "sideMenuTableView")
       
       func authNav(_: Void = ()) -> AuthNavigationBarController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: authNav)
@@ -446,6 +451,14 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: mainTabBar)
       }
       
+      func sideMenuNav(_: Void = ()) -> SideMenu.UISideMenuNavigationController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: sideMenuNav)
+      }
+      
+      func sideMenuTableView(_: Void = ()) -> SideMenuTableViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: sideMenuTableView)
+      }
+      
       static func validate() throws {
         if UIKit.UIImage(named: "searchQ.png", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'searchQ.png' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
@@ -454,6 +467,8 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().authWebView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authWebView' could not be loaded from storyboard 'Main' as 'AuthWebViewController'.") }
         if _R.storyboard.main().loginView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginView' could not be loaded from storyboard 'Main' as 'LoginViewController'.") }
         if _R.storyboard.main().mainTabBar() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'mainTabBar' could not be loaded from storyboard 'Main' as 'MainTabBarController'.") }
+        if _R.storyboard.main().sideMenuNav() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'sideMenuNav' could not be loaded from storyboard 'Main' as 'SideMenu.UISideMenuNavigationController'.") }
+        if _R.storyboard.main().sideMenuTableView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'sideMenuTableView' could not be loaded from storyboard 'Main' as 'SideMenuTableViewController'.") }
       }
       
       fileprivate init() {}

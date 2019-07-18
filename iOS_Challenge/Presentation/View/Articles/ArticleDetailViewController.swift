@@ -96,6 +96,12 @@ final class ArticleDetailViewController: UIViewController {
                 self?.goodCountLabel.text = "いいね \(String(describing: (self?.presenter?.likesCount)!))"
             })
         .disposed(by: disposeBag)
+        
+        presenter?.alertToggle.asSignal()
+            .emit(onNext: { [weak self] _ in
+                self?.showLoginAlert()
+            })
+        .disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,6 +119,20 @@ final class ArticleDetailViewController: UIViewController {
     // MARK: Private
     
     private let disposeBag = DisposeBag()
+    
+    private func showLoginAlert() {
+        
+        let alertController = UIAlertController(title: "ログインが必要です",
+                                                message: "この動作はQiitaアカウントでのログイン認証が必要です",
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ログインする", style: .default) { (action: UIAlertAction) in
+            self.presenter?.tapLoginButton()
+        }
+        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelButton)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     
     // MARK: Internal

@@ -35,7 +35,7 @@ final class LoginViewPresenter: Presenter {
     
     func tapLoginButton() {
         
-        wireframe?.showAuthWebView()
+        wireframe?.showNextView()
     }
     
     func tapUseWithoutLoginButton() {

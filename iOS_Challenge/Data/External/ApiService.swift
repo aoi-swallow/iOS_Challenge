@@ -72,9 +72,22 @@ enum ApiService {
         }
     }
     
-    // 記事取得
+    // 記事取得(ログインなし)
     // - GET /api/v2/items
-    struct ItemsGet: ApiServiceTargetType {
+    struct ItemsGet: GatewayApiServiceTargetType {
+        let query: String
+        let page: Int
+        
+        var method: Moya.Method { return .get }
+        var path: String { return URLConstants.AppURL.items.path }
+        var task: Task {
+            return .requestParameters(parameters: ["per_page": 10,"query": query, "page": page], encoding: URLEncoding.default)
+        }
+    }
+    
+    // 記事取得(ログイン時)
+    // - GET /api/v2/items
+    struct ItemsGetAuthorized: ApiServiceTargetType {
         let query: String
         let page: Int
         

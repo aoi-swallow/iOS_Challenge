@@ -29,10 +29,6 @@ final class LikedUserViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(R.nib.loadingCell)
-        let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
-        (footerCell as! LoadingCell).startAnimation()
-        let footerView: UIView = footerCell.contentView
-        tableView.tableFooterView = footerView
         
         presenter?.getLikedUserList()
         
@@ -87,6 +83,15 @@ extension LikedUserViewController: UITableViewDelegate {
         
         return 60.0
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        if presenter?.loadStatus == LoadStatus.fetching {
+            return 60
+        } else {
+            return 0
+        }
+    }
 }
 
 // MARK: UITabelViewDataSource
@@ -104,5 +109,18 @@ extension LikedUserViewController: UITableViewDataSource {
          cell?.setItem((presenter?.likedUsers[indexPath.row])!)
         }
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if presenter?.loadStatus == LoadStatus.fetching {
+            let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
+            (footerCell as! LoadingCell).startAnimation()
+            let footerView: UIView = footerCell.contentView
+            footerView.backgroundColor = .white
+            return footerView
+        } else {
+            return nil
+        }
     }
 }

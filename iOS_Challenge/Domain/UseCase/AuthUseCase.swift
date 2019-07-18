@@ -10,7 +10,7 @@ import RxSwift
 
 // MARK: - AuthUseCase
 protocol AuthUseCase {
-  func getAccessToken() -> Single<Void>
+    func getAccessToken() -> Single<Void>
 }
 
 // MARK: - AuthUseCaseImpl

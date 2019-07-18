@@ -5,6 +5,7 @@
 //  Created by 大川葵 on 2019/07/12.
 //  Copyright © 2019 Aoi Okawa. All rights reserved.
 //
+import Foundation
 
 // MARK: - LoginViewWireframe
 struct LoginViewWireframe: Wireframe {
@@ -27,7 +28,17 @@ struct LoginViewWireframe: Wireframe {
     
     // MARK: Internal
     
-    func showAuthWebView() {
+    func showNextView() {
+        
+        let isLogin = UserDefaults.Keys.State.isLogin.value()
+        if isLogin {
+            self.showMainView()
+        } else {
+            self.showAuthWebView()
+        }
+    }
+    
+    private func showAuthWebView() {
         
         let nextViewController = AuthWebViewBuilder.build()
         self.viewController?.present(nextViewController, animated: true, completion: nil)

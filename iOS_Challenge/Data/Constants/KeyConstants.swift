@@ -27,3 +27,13 @@ enum LoadStatus {
     case fetching
     case full
 }
+
+public struct ViewConst {
+    
+    struct SideMenu {
+        enum Paging: Int, CaseIterable {
+            case logout = 0
+        }
+        static let items = ["ログアウト"]
+    }
+}

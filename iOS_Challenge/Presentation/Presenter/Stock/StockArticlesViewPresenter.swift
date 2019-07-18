@@ -47,6 +47,7 @@ final class StockArticlesViewPresenter: Presenter {
             return
         }
         self.loadStatus = .fetching
+        self.refreshToggle.accept(())
         self.articlesUseCase?.getStockedItems(page: page)
             .subscribe { [weak self] result in
                 switch result {
@@ -57,18 +58,21 @@ final class StockArticlesViewPresenter: Presenter {
                             contents.append(item)
                         }
                     }
-                    if !contents.isEmpty {
+                    if contents.count == 10 {
                         self?.articles.append(contentsOf: contents)
-                        self?.refreshToggle.accept(())
                         self?.page += 1
                         self?.loadStatus = .initial
+                        self?.refreshToggle.accept(())
                     } else {
+                        self?.articles.append(contentsOf: contents)
                         self?.loadStatus = .full
+                        self?.refreshToggle.accept(())
                     }
                 case .error(let error):
                     print(error)
                     self?.alertToggle.accept(("Error", "データを取得できませんでした"))
                     self?.loadStatus = .initial
+                    self?.refreshToggle.accept(())
                 }
             }
             .disposed(by: disposeBag)
@@ -77,6 +81,16 @@ final class StockArticlesViewPresenter: Presenter {
     func selectCell(index: Int) {
         
         wireframe?.showDetailView(articles[index])
+    }
+    
+    func checkAuthorized() {
+        
+        let isLogin = UserDefaults.Keys.State.isLogin.value()
+        if isLogin {
+            return
+        } else {
+            wireframe?.showAuthWebView()
+        }
     }
 }
 

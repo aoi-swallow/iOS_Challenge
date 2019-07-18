@@ -47,7 +47,8 @@ final class ArticlesListViewPresenter: Presenter {
             return
         }
         self.loadStatus = .fetching
-        self.articlesUseCase?.newArrivalItemsGet(page: self.page)
+        self.refreshToggle.accept(())
+        self.articlesUseCase?.newArrivalItemsGet(page: page)
             .subscribe { [weak self] result in
                 switch result {
                 case .success(let data):
@@ -57,21 +58,24 @@ final class ArticlesListViewPresenter: Presenter {
                             contents.append(item)
                         }
                     }
-                    if !contents.isEmpty {
+                    if contents.count == 10 {
                         self?.articles.append(contentsOf: contents)
-                        self?.refreshToggle.accept(())
                         self?.page += 1
                         self?.loadStatus = .initial
+                        self?.refreshToggle.accept(())
                     } else {
+                        self?.articles.append(contentsOf: contents)
                         self?.loadStatus = .full
+                        self?.refreshToggle.accept(())
                     }
                 case .error(let error):
                     print(error)
                     self?.alertToggle.accept(("Error", "データを取得できませんでした"))
                     self?.loadStatus = .initial
+                    self?.refreshToggle.accept(())
                 }
             }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func selectCell(index: Int) {

@@ -26,24 +26,42 @@ final class UserInfoViewController: UIViewController {
         self.navigationItem.title = "ユーザー情報"
         self.navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.white ]
         
+        let hamburgerButton = UIBarButtonItem.init(image: R.image.good_green(), style: .plain, target: self, action: nil)
+        hamburgerButton.rx.tap
+            .subscribe { [weak self] _ in self?.presenter?.tapHamburgerButton() }
+            .disposed(by: disposeBag)
+        self.navigationItem.leftBarButtonItem = hamburgerButton
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.IconColor.defaultGreen
+        
         self.tableView.register(R.nib.userOutlineCell)
         self.tableView.register(R.nib.articleOutlineCell)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        presenter?.readUserData()
-        presenter?.getUserItems()
+        self.tableView.register(R.nib.loadingCell)
         
         presenter?.refreshToggle.asSignal()
             .emit(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
             })
         .disposed(by: disposeBag)
+        
+        presenter?.checkAuthorized()
+        
+        presenter?.readUserData()
+        presenter?.getUserItems()
     }
     
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        presenter?.readUserData()
+        presenter?.getUserItems()
     }
     
     
@@ -82,6 +100,22 @@ extension UserInfoViewController: UITableViewDelegate {
         
         if indexPath.section == 1 {
             presenter?.selectCell(index: indexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        switch section {
+        case 0:
+            return 0
+        case 1:
+            if presenter?.loadStatus == LoadStatus.fetching {
+                return 60
+            } else {
+                return 0
+            }
+        default:
+            return 0
         }
     }
 }
@@ -139,6 +173,26 @@ extension UserInfoViewController: UITableViewDataSource {
             return "基本情報"
         case 1:
             return "投稿"
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        switch section {
+        case 0:
+            return nil
+        case 1:
+            if presenter?.loadStatus == LoadStatus.fetching {
+                let footerCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.loadingCell.identifier)!
+                (footerCell as! LoadingCell).startAnimation()
+                let footerView: UIView = footerCell.contentView
+                footerView.backgroundColor = .white
+                return footerView
+            } else {
+                return nil
+            }
         default:
             return nil
         }

@@ -110,6 +110,11 @@
 		87D1872622DE32B00077E49A /* StockArticlesViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1872522DE32B00077E49A /* StockArticlesViewBuilder.swift */; };
 		87D1872822DE3A7D0077E49A /* Q_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1872722DE3A7C0077E49A /* Q_white.png */; };
 		87D1872A22DE3BFF0077E49A /* searchQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1872922DE3BFF0077E49A /* searchQ.png */; };
+		87D1873022E010760077E49A /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1872F22E010760077E49A /* SideMenuTableViewController.swift */; };
+		87D1873222E010A30077E49A /* SideMenuTableViewPreseenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1873122E010A30077E49A /* SideMenuTableViewPreseenter.swift */; };
+		87D1873422E010CE0077E49A /* SideMenuTableViewWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1873322E010CE0077E49A /* SideMenuTableViewWireframe.swift */; };
+		87D1873622E010F70077E49A /* SideMenuTableViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1873522E010F70077E49A /* SideMenuTableViewBuilder.swift */; };
+		87D1873822E0110D0077E49A /* SideMenuTableViewNavBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1873722E0110D0077E49A /* SideMenuTableViewNavBuilder.swift */; };
 		F252E67D8A85A8C1C6FA3436 /* Pods_iOS_ChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3AF1DC53EEA12C7996205E /* Pods_iOS_ChallengeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -242,6 +247,11 @@
 		87D1872522DE32B00077E49A /* StockArticlesViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockArticlesViewBuilder.swift; sourceTree = "<group>"; };
 		87D1872722DE3A7C0077E49A /* Q_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Q_white.png; sourceTree = "<group>"; };
 		87D1872922DE3BFF0077E49A /* searchQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchQ.png; sourceTree = "<group>"; };
+		87D1872F22E010760077E49A /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		87D1873122E010A30077E49A /* SideMenuTableViewPreseenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewPreseenter.swift; sourceTree = "<group>"; };
+		87D1873322E010CE0077E49A /* SideMenuTableViewWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewWireframe.swift; sourceTree = "<group>"; };
+		87D1873522E010F70077E49A /* SideMenuTableViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewBuilder.swift; sourceTree = "<group>"; };
+		87D1873722E0110D0077E49A /* SideMenuTableViewNavBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewNavBuilder.swift; sourceTree = "<group>"; };
 		9C3D8544E106CE8173FA1753 /* Pods-iOS_Challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Challenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_Challenge/Pods-iOS_Challenge.release.xcconfig"; sourceTree = "<group>"; };
 		A54E5EF645682BCEFBDCAB49 /* Pods-iOS_ChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_ChallengeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_ChallengeTests/Pods-iOS_ChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD5CF064AD10CC0B0ED24C39 /* Pods-iOS_ChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_ChallengeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_ChallengeUITests/Pods-iOS_ChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -578,6 +588,7 @@
 				871E0D3E22D8BBCF00DB497B /* AuthWebViewController.swift */,
 				871E0D3422D8B3B300DB497B /* LoginViewController.swift */,
 				875DBE4622DADE4B00D3EAE8 /* AuthNavigationController.swift */,
+				87D1872F22E010760077E49A /* SideMenuTableViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -599,6 +610,7 @@
 				875DBE2A22DA45AF00D3EAE8 /* MainTabBarPresenter.swift */,
 				871E0D4022D8BBF600DB497B /* AuthWebViewPresenter.swift */,
 				871E0D3622D8B3CB00DB497B /* LoginViewPresenter.swift */,
+				87D1873122E010A30077E49A /* SideMenuTableViewPreseenter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -609,6 +621,7 @@
 				871E0D3A22D8B56500DB497B /* LoginViewWireframe.swift */,
 				87B87E7222D8C6F300B351FD /* AuthWebViewWireframe.swift */,
 				875DBE2C22DA45E100D3EAE8 /* MainTabBarWireframe.swift */,
+				87D1873322E010CE0077E49A /* SideMenuTableViewWireframe.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -620,6 +633,8 @@
 				871E0D4422D8BC5A00DB497B /* AuthWebViewBuilder.swift */,
 				875DBE2E22DA461600D3EAE8 /* MainTabBarBuilder.swift */,
 				875DBE4822DADEAF00D3EAE8 /* AuthNavBuilder.swift */,
+				87D1873522E010F70077E49A /* SideMenuTableViewBuilder.swift */,
+				87D1873722E0110D0077E49A /* SideMenuTableViewNavBuilder.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1068,6 +1083,7 @@
 				8735878D22DB346A00C9C6B9 /* Realm+.swift in Sources */,
 				87B87E7522D8F72800B351FD /* URL+.swift in Sources */,
 				875DBE4922DADEAF00D3EAE8 /* AuthNavBuilder.swift in Sources */,
+				87D1873222E010A30077E49A /* SideMenuTableViewPreseenter.swift in Sources */,
 				87A1B3EF22DE20A3003167EB /* SearchResultViewBuilder.swift in Sources */,
 				87A1B3E922DE1EFE003167EB /* SearchResultViewController.swift in Sources */,
 				875DBE4722DADE4B00D3EAE8 /* AuthNavigationController.swift in Sources */,
@@ -1084,10 +1100,12 @@
 				879201A322DDFF95005B354F /* SearchViewPresenter.swift in Sources */,
 				8778E6C722D78A2B00D0B5F8 /* UserDefaults+.swift in Sources */,
 				8792019822DDC6FF005B354F /* UserInfoViewBuilder.swift in Sources */,
+				87D1873622E010F70077E49A /* SideMenuTableViewBuilder.swift in Sources */,
 				8735877722DB080F00C9C6B9 /* ArticlesListViewBuilder.swift in Sources */,
 				879BDE8322DB5F07002CDD90 /* LoadingCell.swift in Sources */,
 				871E0D2422D7C0B300DB497B /* AuthDataStore.swift in Sources */,
 				875DBE3122DA4C9800D3EAE8 /* ArticlesNavigationController.swift in Sources */,
+				87D1873422E010CE0077E49A /* SideMenuTableViewWireframe.swift in Sources */,
 				871E0D3522D8B3B300DB497B /* LoginViewController.swift in Sources */,
 				871E0D3F22D8BBCF00DB497B /* AuthWebViewController.swift in Sources */,
 				8778E6C122D73DAC00D0B5F8 /* URLConstants.swift in Sources */,
@@ -1100,6 +1118,7 @@
 				87D1872622DE32B00077E49A /* StockArticlesViewBuilder.swift in Sources */,
 				8792019622DDC5F3005B354F /* UserInfoViewWireframe.swift in Sources */,
 				8792017E22DD7351005B354F /* LikedUserViewController.swift in Sources */,
+				87D1873022E010760077E49A /* SideMenuTableViewController.swift in Sources */,
 				871E0D4522D8BC5A00DB497B /* AuthWebViewBuilder.swift in Sources */,
 				8735878122DB111300C9C6B9 /* AuthorizedUserEntity.swift in Sources */,
 				871D777022DAE4540062EDDE /* StockNavBuilder.swift in Sources */,
@@ -1114,6 +1133,7 @@
 				8792019322DDC500005B354F /* UserInfoViewPresenter.swift in Sources */,
 				871E0D1C22D7BE5A00DB497B /* RealmInstance.swift in Sources */,
 				875DBE2B22DA45AF00D3EAE8 /* MainTabBarPresenter.swift in Sources */,
+				87D1873822E0110D0077E49A /* SideMenuTableViewNavBuilder.swift in Sources */,
 				875DBE4022DA671400D3EAE8 /* SearchNavigationController.swift in Sources */,
 				8735876F22DAEAE600C9C6B9 /* ArticlesListViewController.swift in Sources */,
 				875DBE4522DA680700D3EAE8 /* SearchNavBuilder.swift in Sources */,

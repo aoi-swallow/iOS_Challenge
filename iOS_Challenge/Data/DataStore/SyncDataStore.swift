@@ -27,6 +27,7 @@ protocol SyncDataStore {
     func getSingleItem(itemID: String) -> Single<ArticleSingleItemEntity>
     func getAuthorizedUsersItems(page: Int) -> Single<ArticlesItemListEntity>
     func getFollowingTags() -> Single<Void>
+    func deleteData() -> Single<Void>
 }
 
 // MARK: - SyncDataStoreImpl
@@ -77,8 +78,16 @@ final class SyncDataStoreImpl: SyncDataStore {
     
     func getItems(query: String, page: Int) -> Single<ArticlesItemListEntity> {
         
-        let task = Api.shared.request(ApiService.ItemsGet(query: query, page: page))
-        return task.flatMap { response in
+        
+        var task: Single<Response>?
+        let isLogin = UserDefaults.Keys.State.isLogin.value()
+        if isLogin {
+            task = Api.shared.request(ApiService.ItemsGetAuthorized(query: query, page: page))
+        } else {
+            task = Api.shared.request(ApiService.ItemsGet(query: query, page: page))
+        }
+        
+        return task!.flatMap { response in
             return Single.create { observer in
                 let json = JSON(response.data)
                 let items: ArticlesItemListEntity = ArticlesItemListEntity(json: json, count: 10)
@@ -196,6 +205,22 @@ final class SyncDataStoreImpl: SyncDataStore {
                 observer(.success(()))
                 return Disposables.create()
             }
+        }
+    }
+    
+    func deleteData() -> Single<Void> {
+        
+        return Single.create { [weak self] observer in
+            do {
+                try self?.realm.write {
+                    self?.realm.delete(self!.realm.objects(AuthorizedUserEntity.self))
+                }
+            } catch {
+                observer(.error(error))
+                return Disposables.create()
+            }
+            observer(.success(()))
+            return Disposables.create()
         }
     }
 }
