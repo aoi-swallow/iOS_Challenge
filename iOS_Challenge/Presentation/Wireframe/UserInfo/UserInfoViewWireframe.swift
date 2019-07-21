@@ -38,13 +38,7 @@ struct UserInfoViewWireframe: Wireframe {
         nextViewController.presenter?.likesCount = item.likesCount
         viewController?.navigationController?.pushViewController(nextViewController, animated: true)
     }
-    
-    func showAuthWebView() {
-        
-        let nextViewController = AuthNavBuilder.build()
-        self.viewController?.present(nextViewController, animated: true, completion: nil)
-    }
-    
+
     func showSideMenu() {
         
         SideMenuManager.default.menuLeftNavigationController = SideMenuTableViewNavBuilder.build()

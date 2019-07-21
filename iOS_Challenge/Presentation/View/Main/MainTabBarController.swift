@@ -16,6 +16,8 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,4 +29,20 @@ final class MainTabBarController: UITabBarController {
     // MARK: Internal
     
     var presenter: MainTabBarPresenter?
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        if UserDefaults.Keys.State.isLogin.value() {
+            return true
+        } else {
+            if viewController is StockNavigationBarController || viewController is UserInfoNavigationBarController {
+                presenter?.tapTab()
+                return false
+            }
+            return true
+        }
+    }
 }

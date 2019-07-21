@@ -90,16 +90,6 @@ final class UserInfoViewPresenter: Presenter {
         wireframe?.showDetailView(articles[index])
     }
     
-    func checkAuthorized() {
-        
-        let isLogin = UserDefaults.Keys.State.isLogin.value()
-        if isLogin {
-            return
-        } else {
-            wireframe?.showAuthWebView()
-        }
-    }
-    
     func tapHamburgerButton() {
         
         wireframe?.showSideMenu()

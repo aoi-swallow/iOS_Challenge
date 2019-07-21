@@ -26,4 +26,13 @@ struct MainTabBarWireframe: Wireframe {
     
     private weak var viewController: ViewController?
     
+    
+    // MARK: Internal
+    
+    func showAuthWebView() {
+        
+        let nextViewController = AuthNavBuilder.build()
+        self.viewController?.present(nextViewController, animated: true, completion: nil)
+    }
+    
 }

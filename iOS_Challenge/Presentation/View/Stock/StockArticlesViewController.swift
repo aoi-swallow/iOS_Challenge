@@ -44,7 +44,6 @@ final class StockArticlesViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        presenter?.checkAuthorized()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,8 +55,9 @@ final class StockArticlesViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        presenter?.checkAuthorized()
-        presenter?.getData()
+        if UserDefaults.Keys.State.isLogin.value() {
+            presenter?.getData()
+        }
     }
     
     
