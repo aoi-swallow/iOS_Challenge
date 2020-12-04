@@ -29,4 +29,8 @@ final class MainTabBarPresenter: Presenter {
     
     var wireframe: MainTabBarWireframe?
     
+    func tapTab() {
+        
+        wireframe?.showAuthWebView()
+    }
 }

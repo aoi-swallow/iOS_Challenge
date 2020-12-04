@@ -44,11 +44,6 @@ final class UserInfoViewController: UIViewController {
                 self?.tableView.reloadData()
             })
         .disposed(by: disposeBag)
-        
-        presenter?.checkAuthorized()
-        
-        presenter?.readUserData()
-        presenter?.getUserItems()
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,8 +55,10 @@ final class UserInfoViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        presenter?.readUserData()
-        presenter?.getUserItems()
+        if UserDefaults.Keys.State.isLogin.value() {
+            presenter?.readUserData()
+            presenter?.getUserItems()
+        }
     }
     
     

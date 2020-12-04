@@ -35,7 +35,7 @@ final class SyncUseCaseImpl: SyncUseCase {
     func logout() -> Single<Void> {
         UserDefaults.Keys.State.isLogin.set(false)
         UserDefaults.Keys.Auth.userID.set("")
-        self.keychain[AppKey.Keychain.token.rawValue] = ""
+        self.keychain[AppKey.Keychain.token.rawValue] = nil
         
         return syncDataStore.deleteData()
     }
